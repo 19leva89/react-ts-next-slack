@@ -5,6 +5,7 @@ lucide-react?
 prettier?
 postcss?
 eslint?
+convex
 
 Core Technologies:
 - React 19
@@ -15,6 +16,8 @@ Core Technologies:
 
 
 
-To run the client:
-npm run dev
+To run the client and server via concurrently:
+npm run all
 npm run lint (loading ESLint checker)
+
+npx convex dev
