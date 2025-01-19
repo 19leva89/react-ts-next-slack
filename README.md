@@ -1,12 +1,10 @@
-Animation and Interaction:
-- AOS (animation on scroll)
-- GSAP (animation library)
-- React Spinners (loading indicators)
-- Swiper (touch slider)
-- Typed.js (text animation)
-
-Authentication and User Management:
-- JSON Web Token (securely transmitting information)
+shadcn
+React Icons
+TailwindCSS
+lucide-react?
+prettier?
+postcss?
+eslint?
 
 Core Technologies:
 - React 19

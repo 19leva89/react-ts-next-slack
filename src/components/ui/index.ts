@@ -1,6 +1,6 @@
 // export { Avatar, AvatarFallback, AvatarImage } from './avatar'
 export { Button, buttonVariants } from './button'
-// export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './card'
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './card'
 // export { Dialog, DialogContent, DialogTitle, DialogTrigger } from './dialog'
 // export {
 // 	DropdownMenu,
@@ -9,9 +9,9 @@ export { Button, buttonVariants } from './button'
 // 	DropdownMenuSeparator,
 // 	DropdownMenuTrigger,
 // } from './dropdown-menu'
-// export { Input } from './input'
+export { Input } from './input'
 // export { Progress } from './progress'
-// export { Separator } from './separator'
+export { Separator } from './separator'
 // export { Textarea } from './textarea'
 // export {
 // 	Toast,

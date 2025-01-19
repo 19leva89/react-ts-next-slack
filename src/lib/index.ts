@@ -1,1 +1,1 @@
-export { absoluteUrl, cn } from './utils'
+export { absoluteUrl, constructMetadata, cn } from './utils'

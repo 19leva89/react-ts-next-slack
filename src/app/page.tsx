@@ -1,5 +1,7 @@
-import { Button } from '@/components/ui'
+import { AuthScreen } from '@/features/auth/components/auth-screen'
 
-export default function Home() {
-	return <Button variant="slack">Hello world</Button>
+const HomePage = () => {
+	return <AuthScreen />
 }
+
+export default HomePage
