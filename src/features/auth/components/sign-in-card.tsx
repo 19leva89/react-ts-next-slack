@@ -25,7 +25,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const handleProviderSignIn = (value: 'github' | 'google') => {
+	const onProviderSignIn = (value: 'github' | 'google') => {
 		signIn(value)
 	}
 
@@ -70,7 +70,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
 						size="lg"
 						variant="outline"
 						disabled={false}
-						onClick={() => handleProviderSignIn('google')}
+						onClick={() => onProviderSignIn('google')}
 						className="w-full relative"
 					>
 						<FcGoogle className="!size-5 absolute left-2.5 top-1/2 transform -translate-y-1/2" />
@@ -82,7 +82,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
 						size="lg"
 						variant="outline"
 						disabled={false}
-						onClick={() => handleProviderSignIn('github')}
+						onClick={() => onProviderSignIn('github')}
 						className="w-full relative"
 					>
 						<FaGithub className="!size-5 absolute left-2.5 top-1/2 transform -translate-y-1/2" />
