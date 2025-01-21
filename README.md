@@ -3,6 +3,9 @@ Core Technologies:
 - TypeScript
 - Next 15 (framework)
 
+Data Fetching and State Management:
+- Jotai (state management)
+
 Database Management:
 - Convex (reactive NoSQL database)
 

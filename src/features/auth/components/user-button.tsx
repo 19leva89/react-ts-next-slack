@@ -12,9 +12,9 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui'
-import { useCurrentUser } from '../hooks/use-current-user'
+import { useCurrentUser } from '../api/use-current-user'
 
-const UserButton = () => {
+export const UserButton = () => {
 	const { signOut } = useAuthActions()
 	const { data, isLoading } = useCurrentUser()
 
@@ -49,5 +49,3 @@ const UserButton = () => {
 		</DropdownMenu>
 	)
 }
-
-export default UserButton
