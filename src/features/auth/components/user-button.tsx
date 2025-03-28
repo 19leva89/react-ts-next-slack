@@ -1,6 +1,6 @@
 'use client'
 
-import { Loader, LogOut } from 'lucide-react'
+import { LoaderIcon, LogOutIcon } from 'lucide-react'
 import { useAuthActions } from '@convex-dev/auth/react'
 
 import {
@@ -19,7 +19,7 @@ export const UserButton = () => {
 	const { data, isLoading } = useCurrentUser()
 
 	if (isLoading) {
-		return <Loader className="size-4 animate-spin text-muted-foreground" />
+		return <LoaderIcon size={16} className="animate-spin text-muted-foreground" />
 	}
 
 	if (!data) {
@@ -42,7 +42,7 @@ export const UserButton = () => {
 
 			<DropdownMenuContent align="center" side="right" className="w-60">
 				<DropdownMenuItem onClick={() => signOut()} className="h-10">
-					<LogOut className="size-4 mr-2" />
+					<LogOutIcon size={16} className="mr-2" />
 					Log out
 				</DropdownMenuItem>
 			</DropdownMenuContent>

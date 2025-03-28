@@ -1,5 +1,5 @@
-import { Loader2 } from 'lucide-react'
 import { ComponentProps } from 'react'
+import { Loader2Icon } from 'lucide-react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
@@ -18,12 +18,14 @@ const buttonVariants = cva(
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
 				link: 'text-primary underline-offset-4 hover:underline',
 				slack: 'bg-emerald-500 text-white hover:bg-emerald-500/80',
+				transparent: 'bg-transparent text-accent hover:bg-accent/10 hover:text-accent-foreground',
 			},
 			size: {
 				default: 'h-10 px-4 py-2 has-[>svg]:px-3',
-				sm: 'h-9 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
+				sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
 				lg: 'h-11 rounded-md px-6 has-[>svg]:px-4',
 				icon: 'h-10 w-10',
+				iconSm: 'h-8 w-8',
 			},
 		},
 		defaultVariants: { variant: 'default', size: 'default' },
@@ -50,7 +52,7 @@ function Button({
 			disabled={disabled || loading}
 			{...props}
 		>
-			{!loading ? children : <Loader2 className="w-5 h-5 animate-spin" />}
+			{!loading ? children : <Loader2Icon className="w-5 h-5 animate-spin" />}
 		</Comp>
 	)
 }

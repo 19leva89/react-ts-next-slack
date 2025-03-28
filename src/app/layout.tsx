@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 import { ConvexAuthNextjsServerProvider } from '@convex-dev/auth/nextjs/server'
 
+import { Toaster } from '@/components/ui'
 import { cn, constructMetadata } from '@/lib'
 import { Modals } from '@/components/shared/modals'
 import { ConvexClientProvider } from '@/components/shared/convex-client-provider'
@@ -18,6 +19,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 			<html lang="en">
 				<body className={cn('min-h-screen font-sans antialiased grainy', inter.className)}>
 					<ConvexClientProvider>
+						<Toaster position="bottom-right" expand={false} richColors />
+
 						<Modals />
 
 						{children}

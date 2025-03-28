@@ -11,7 +11,7 @@ import {
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { FormEvent, useState } from 'react'
-import { TriangleAlert } from 'lucide-react'
+import { TriangleAlertIcon } from 'lucide-react'
 import { useAuthActions } from '@convex-dev/auth/react'
 
 import { SignInFlow } from '@/features/auth/types'
@@ -54,7 +54,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
 
 			{!!error && (
 				<div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
-					<TriangleAlert className="size-4" />
+					<TriangleAlertIcon size={16} />
 
 					<p>{error}</p>
 				</div>
