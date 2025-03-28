@@ -123,7 +123,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 						onClick={() => onProviderSignUp('google')}
 						className="w-full relative"
 					>
-						<FcGoogle className="!size-5 absolute left-2.5 top-1/2 transform -translate-y-1/2" />
+						<FcGoogle className="size-5! absolute left-2.5 top-1/2 transform -translate-y-1/2" />
 						Continue with Google
 					</Button>
 
@@ -135,7 +135,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 						onClick={() => onProviderSignUp('github')}
 						className="w-full relative"
 					>
-						<FaGithub className="!size-5 absolute left-2.5 top-1/2 transform -translate-y-1/2" />
+						<FaGithub className="size-5! absolute left-2.5 top-1/2 transform -translate-y-1/2" />
 						Continue with GitHub
 					</Button>
 				</div>

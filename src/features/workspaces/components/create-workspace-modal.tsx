@@ -1,17 +1,30 @@
 'use client'
 
-import { Router } from 'next/router'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+import {
+	Button,
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	Input,
+} from '@/components/ui'
 import { useCreateWorkspace } from '../api/use-create-workspace'
 import { useCreateWorkspaceModal } from '../store/use-create-workspace-modal'
-import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, Input } from '@/components/ui'
 
 export const CreateWorkspaceModal = () => {
-	const [open, setOpen] = useCreateWorkspaceModal()
-
+	const router = useRouter()
 	const { mutate } = useCreateWorkspace()
 
-	const handeClose = () => {
+	const [open, setOpen] = useCreateWorkspaceModal()
+	const [name, setName] = useState<string>('')
+
+	const handleClose = () => {
 		setOpen(false)
+		setName('')
 
 		// TODO: Clear form
 	}
@@ -22,6 +35,7 @@ export const CreateWorkspaceModal = () => {
 			{
 				onSuccess(data) {
 					router.push(`/workspaces/${data}`)
+					handleClose()
 				},
 				onError: () => {
 					// Show toast error
@@ -34,15 +48,18 @@ export const CreateWorkspaceModal = () => {
 	}
 
 	return (
-		<Dialog open={open} onOpenChange={handeClose}>
-			<DialogContent>
+		<Dialog open={open} onOpenChange={handleClose}>
+			<DialogContent aria-describedby={undefined}>
 				<DialogHeader>
 					<DialogTitle>Add a workspace</DialogTitle>
+
+					<DialogDescription className="hidden" />
 				</DialogHeader>
 
-				<form className="space-y-4">
+				<form onSubmit={handleSubmit} className="space-y-4">
 					<Input
-						value=""
+						value={name}
+						onChange={(e) => setName(e.target.value)}
 						disabled={false}
 						required
 						autoFocus
@@ -51,7 +68,9 @@ export const CreateWorkspaceModal = () => {
 					/>
 
 					<div className="flex justify-end">
-						<Button disabled={false}>Create</Button>
+						<Button type="submit" disabled={!name.trim()}>
+							Create
+						</Button>
 					</div>
 				</form>
 			</DialogContent>

@@ -14,11 +14,8 @@ export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
 	if (isPublicPage(request) && (await convexAuth.isAuthenticated())) {
 		return nextjsMiddlewareRedirect(request, '/')
 	}
+
 	//TODO: redirect user away from '/auth' if authenticated
 })
 
-export const config = {
-	// The following matcher runs middleware on all routes
-	// except static assets.
-	matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
-}
+export const config = { matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'] }

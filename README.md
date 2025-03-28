@@ -25,7 +25,7 @@ npm run lint (loading ESLint checker)
 
 npx convex dev
 npx @convex-dev/auth (sets up your project for authenticating via the library)
-npx convex env set AUTH_GITHUB_ID <yourgithubclientid>
-npx convex env set AUTH_GITHUB_SECRET <yourgithubsecret>
-npx convex env set AUTH_GOOGLE_ID <yourgoogleclientid>
-npx convex env set AUTH_GOOGLE_SECRET <yourgooglesecret>
+npx convex env set AUTH_GITHUB_ID <yourGithubClientId>
+npx convex env set AUTH_GITHUB_SECRET <yourGithubSecret>
+npx convex env set AUTH_GOOGLE_ID <yourGoogleClientId>
+npx convex env set AUTH_GOOGLE_SECRET <yourGoogleSecret>

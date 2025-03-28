@@ -32,7 +32,7 @@ export const UserButton = () => {
 
 	return (
 		<DropdownMenu modal={false}>
-			<DropdownMenuTrigger className="outline-none relative">
+			<DropdownMenuTrigger className="outline-hidden relative">
 				<Avatar className="size-10 hover:opacity-75 transition">
 					<AvatarImage alt={name} src={image} />
 
