@@ -6,6 +6,7 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui'
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
@@ -58,6 +59,8 @@ export const WorkspaceSwitcher = () => {
 						<p className="truncate">{workspace.name}</p>
 					</DropdownMenuItem>
 				))}
+
+				<DropdownMenuSeparator />
 
 				<DropdownMenuItem onClick={() => setOpen(true)} className="cursor-pointer">
 					<div className="relative flex items-center justify-center size-9 mr-2 overflow-hidden bg-[#f2f2f2] text-slate-800 font-semibold text-xl rounded-md">

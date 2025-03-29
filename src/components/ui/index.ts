@@ -11,6 +11,7 @@ export {
 } from './dropdown-menu'
 export { Input } from './input'
 // export { Progress } from './progress'
+export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './resizable'
 export { Separator } from './separator'
 // export { Textarea } from './textarea'
 // export {
@@ -24,4 +25,4 @@ export { Separator } from './separator'
 // } from './toast'
 // export type { ToastActionElement, ToastProps } from './toast'
 export { Toaster } from './sonner'
-// export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
