@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react'
-import { Loader2Icon } from 'lucide-react'
+import { LoaderIcon } from 'lucide-react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
@@ -52,7 +52,7 @@ function Button({
 			disabled={disabled || loading}
 			{...props}
 		>
-			{!loading ? children : <Loader2Icon className="w-5 h-5 animate-spin" />}
+			{!loading ? children : <LoaderIcon size={20} className="animate-spin" />}
 		</Comp>
 	)
 }

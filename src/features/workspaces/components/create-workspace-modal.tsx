@@ -1,8 +1,8 @@
 'use client'
 
 import { toast } from 'sonner'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { FormEvent, useState } from 'react'
 
 import {
 	Button,
@@ -30,9 +30,11 @@ export const CreateWorkspaceModal = () => {
 		// TODO: Clear form
 	}
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+
 		const data = await mutate(
-			{ name: 'Workspace 1' },
+			{ name: name.trim() },
 			{
 				onSuccess(data) {
 					toast.success('Workspace created')

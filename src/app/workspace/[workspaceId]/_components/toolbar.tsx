@@ -21,7 +21,7 @@ export const Toolbar = () => {
 			</div>
 
 			<div className="flex flex-1 items-center justify-end ml-auto">
-				<Button variant="transparent" size="iconSm">
+				<Button variant="transparent" size="iconSm" className="transition-colors ease-in-out duration-300">
 					<InfoIcon size={20} className="text-white" />
 				</Button>
 			</div>
