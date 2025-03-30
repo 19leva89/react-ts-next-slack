@@ -1,7 +1,27 @@
+export {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogContent,
+	AlertDialogCancel,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from './alert-dialog'
 export { Avatar, AvatarFallback, AvatarImage } from './avatar'
 export { Button, buttonVariants } from './button'
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './card'
-export { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './dialog'
+export {
+	Dialog,
+	DialogContent,
+	DialogClose,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from './dialog'
 export {
 	DropdownMenu,
 	DropdownMenuContent,

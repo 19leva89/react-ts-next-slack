@@ -23,13 +23,13 @@ interface SignUpCardProps {
 export const SignUpCard = ({ setState }: SignUpCardProps) => {
 	const { signIn } = useAuthActions()
 
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [confirmPassword, setConfirmPassword] = useState('')
+	const [name, setName] = useState<string>('')
+	const [email, setEmail] = useState<string>('')
+	const [password, setPassword] = useState<string>('')
+	const [confirmPassword, setConfirmPassword] = useState<string>('')
 
-	const [error, setError] = useState('')
-	const [pending, setPending] = useState(false)
+	const [error, setError] = useState<string>('')
+	const [pending, setPending] = useState<boolean>(false)
 
 	const onPasswordSignUp = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()

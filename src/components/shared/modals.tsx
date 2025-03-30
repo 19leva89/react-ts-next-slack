@@ -6,7 +6,7 @@ import { CreateWorkspaceModal } from '@/features/workspaces/components/create-wo
 
 export const Modals = () => {
 	// fix potential hydration error
-	const [mounted, setMounted] = useState(false)
+	const [mounted, setMounted] = useState<boolean>(false)
 
 	useEffect(() => setMounted(true), [])
 

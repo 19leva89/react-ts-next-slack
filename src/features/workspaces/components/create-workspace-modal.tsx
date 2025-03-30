@@ -33,7 +33,7 @@ export const CreateWorkspaceModal = () => {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		const data = await mutate(
+		await mutate(
 			{ name: name.trim() },
 			{
 				onSuccess(data) {
