@@ -18,7 +18,7 @@ const buttonVariants = cva(
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
 				link: 'text-primary underline-offset-4 hover:underline',
 				slack: 'bg-emerald-500 text-white hover:bg-emerald-500/80',
-				transparent: 'bg-transparent text-accent hover:bg-accent/10 hover:text-accent-foreground',
+				transparent: 'bg-transparent text-accent hover:bg-accent/10 hover:text-accent',
 			},
 			size: {
 				default: 'h-10 px-4 py-2 has-[>svg]:px-3',
