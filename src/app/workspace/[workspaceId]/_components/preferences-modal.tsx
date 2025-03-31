@@ -30,9 +30,9 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: Props) => {
 	const router = useRouter()
 	const workspaceId = useWorkspaceId()
 
-	const [ConfirmDialog, confirm] = useConfirm('Are you sure?', 'This action cannot be undone!')
 	const [value, setValue] = useState<string>(initialValue)
 	const [editOpen, setEditOpen] = useState<boolean>(false)
+	const [ConfirmDialog, confirm] = useConfirm('Are you sure?', 'This action cannot be undone!')
 
 	const { mutate: updateWorkspace, isPending: isUpdatingWorkspace } = useUpdateWorkspace()
 	const { mutate: removeWorkspace, isPending: isRemovingWorkspace } = useRemoveWorkspace()

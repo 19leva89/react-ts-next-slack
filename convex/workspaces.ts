@@ -100,7 +100,7 @@ export const update = mutation({
 			.unique()
 
 		if (!member || member.role !== 'owner') {
-			throw new Error('Unauthorized')
+			throw new Error("You don't have permission to update this workspace")
 		}
 
 		await ctx.db.patch(args.id, { name: args.name })
@@ -124,7 +124,7 @@ export const remove = mutation({
 			.unique()
 
 		if (!member || member.role !== 'owner') {
-			throw new Error('Unauthorized')
+			throw new Error("You don't have permission to remove this workspace")
 		}
 
 		const [members] = await Promise.all([
@@ -141,5 +141,31 @@ export const remove = mutation({
 		await ctx.db.delete(args.id)
 
 		return args.id
+	},
+})
+
+export const newJoinCode = mutation({
+	args: { workspaceId: v.id('workspaces') },
+	handler: async (ctx, args) => {
+		const userId = await getAuthUserId(ctx)
+
+		if (!userId) {
+			throw new Error('Unauthorized')
+		}
+
+		const member = await ctx.db
+			.query('members')
+			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.workspaceId).eq('userId', userId))
+			.unique()
+
+		if (!member || member.role !== 'owner') {
+			throw new Error("You don't have permission to join this workspace")
+		}
+
+		const joinCode = generateCode()
+
+		await ctx.db.patch(args.workspaceId, { joinCode })
+
+		return args.workspaceId
 	},
 })

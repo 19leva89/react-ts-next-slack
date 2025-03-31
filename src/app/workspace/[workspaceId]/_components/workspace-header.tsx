@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui'
 import { Hint } from '@/components/shared'
+import { InviteModal } from './invite-modal'
 import { PreferencesModal } from './preferences-modal'
 import { Doc } from '../../../../../convex/_generated/dataModel'
 
@@ -19,10 +20,18 @@ interface Props {
 }
 
 export const WorkspaceHeader = ({ workspace, isOwner }: Props) => {
+	const [inviteOpen, setInviteOpen] = useState<boolean>(false)
 	const [preferencesOpen, setPreferencesOpen] = useState<boolean>(false)
 
 	return (
 		<>
+			<InviteModal
+				open={inviteOpen}
+				setOpen={setInviteOpen}
+				name={workspace.name}
+				joinCode={workspace.joinCode}
+			/>
+
 			<PreferencesModal open={preferencesOpen} setOpen={setPreferencesOpen} initialValue={workspace.name} />
 
 			<div className="flex items-center justify-between gap-0.5 h-[49px] px-4">
@@ -55,7 +64,7 @@ export const WorkspaceHeader = ({ workspace, isOwner }: Props) => {
 							<>
 								<DropdownMenuSeparator />
 
-								<DropdownMenuItem onClick={() => {}} className="py-2 cursor-pointer">
+								<DropdownMenuItem onClick={() => setInviteOpen(true)} className="py-2 cursor-pointer">
 									Invite members to {workspace.name}
 								</DropdownMenuItem>
 
