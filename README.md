@@ -1,5 +1,3 @@
-react-use
-
 Core Technologies:
 - React 19
 - TypeScript
@@ -19,6 +17,7 @@ Styling and UI Frameworks:
 
 Utilities and Libraries:
 - PostCSS (transforms CSS code to AST)
+- React Use (custom React Hooks)
 
 
 To run the client and server via concurrently:
