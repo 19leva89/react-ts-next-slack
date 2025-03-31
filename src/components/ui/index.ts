@@ -30,19 +30,8 @@ export {
 	DropdownMenuTrigger,
 } from './dropdown-menu'
 export { Input } from './input'
-// export { Progress } from './progress'
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './input-otp'
 export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './resizable'
 export { Separator } from './separator'
-// export { Textarea } from './textarea'
-// export {
-// 	Toast,
-// 	ToastAction,
-// 	ToastClose,
-// 	ToastDescription,
-// 	ToastProvider,
-// 	ToastTitle,
-// 	ToastViewport,
-// } from './toast'
-// export type { ToastActionElement, ToastProps } from './toast'
 export { Toaster } from './sonner'
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'

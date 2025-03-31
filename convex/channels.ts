@@ -1,4 +1,4 @@
-import { v } from 'convex/values'
+import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
 import { mutation, query } from './_generated/server'
@@ -9,7 +9,7 @@ export const create = mutation({
 		const userId = await getAuthUserId(ctx)
 
 		if (!userId) {
-			throw new Error('Unauthorized')
+			throw new ConvexError('Unauthorized')
 		}
 
 		const member = await ctx.db
@@ -18,7 +18,7 @@ export const create = mutation({
 			.unique()
 
 		if (!member || member.role !== 'owner') {
-			throw new Error("You don't have permission to create a channel in this workspace")
+			throw new ConvexError("You don't have permission to create a channel in this workspace")
 		}
 
 		const parsedName = args.name.replace(/\s+/g, '-').toLowerCase()
