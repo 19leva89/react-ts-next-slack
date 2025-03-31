@@ -18,7 +18,7 @@ export const WorkspaceSection = ({ children, label, hint, onNew }: Props) => {
 	const [on, toggle] = useToggle(true)
 
 	return (
-		<div className="flex flex-col px-2.5 mt-2">
+		<div className="flex flex-col gap-0.5 px-2.5 mt-2">
 			<div className="flex items-center px-1.5 group">
 				<Button
 					variant="transparent"

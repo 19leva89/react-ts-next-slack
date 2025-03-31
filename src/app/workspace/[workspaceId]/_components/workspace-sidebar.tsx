@@ -9,6 +9,7 @@ import {
 import { UserItem } from './user-item'
 import { SidebarItem } from './sidebar-item'
 import { WorkspaceHeader } from './workspace-header'
+import { useChannelId } from '@/hooks/use-channel-id'
 import { WorkspaceSection } from './workspace-section'
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
 import { useGetMembers } from '@/features/members/api/use-get-members'
@@ -18,6 +19,7 @@ import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'
 import { useCreateChannelModal } from '@/features/channels/store/use-create-channel-modal'
 
 export const WorkspaceSidebar = () => {
+	const channelId = useChannelId()
 	const workspaceId = useWorkspaceId()
 
 	const [_open, setOpen] = useCreateChannelModal()
@@ -49,10 +51,10 @@ export const WorkspaceSidebar = () => {
 		<div className="flex flex-col h-full bg-[#5e2c5f]">
 			<WorkspaceHeader workspace={workspace} isOwner={member.role === 'owner'} />
 
-			<div className="flex flex-col gap-1 px-2.5 mt-3">
-				<SidebarItem id="threads" label="Threads" icon={MessageSquareTextIcon} variant="active" />
+			<div className="flex flex-col gap-0.5 px-2.5 mt-3">
+				<SidebarItem id="threads" label="Threads" icon={MessageSquareTextIcon} />
 
-				<SidebarItem id="drafts" label="Drafts & Sent" icon={SendHorizontalIcon} variant="default" />
+				<SidebarItem id="drafts" label="Drafts & Sent" icon={SendHorizontalIcon} />
 			</div>
 
 			<WorkspaceSection
@@ -61,7 +63,13 @@ export const WorkspaceSidebar = () => {
 				onNew={member.role === 'owner' ? () => setOpen(true) : undefined}
 			>
 				{channels?.map((item) => (
-					<SidebarItem key={item._id} id={item._id} label={item.name} icon={HashIcon} />
+					<SidebarItem
+						key={item._id}
+						id={item._id}
+						label={item.name}
+						icon={HashIcon}
+						variant={channelId === item._id ? 'active' : 'default'}
+					/>
 				))}
 			</WorkspaceSection>
 

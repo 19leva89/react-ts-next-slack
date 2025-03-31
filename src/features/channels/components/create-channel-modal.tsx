@@ -39,13 +39,13 @@ export const CreateChannelModal = () => {
 		await mutate(
 			{ name: name.trim(), workspaceId },
 			{
-				onSuccess(data) {
+				onSuccess(id) {
 					toast.success('Channel created')
-					// router.push(`/workspace/${data}`)
+					router.push(`/workspace/${workspaceId}/channel/${id}`)
 					handleClose()
 				},
 				onError: () => {
-					// Show toast error
+					toast.error('Failed to create channel')
 				},
 				onSettled() {
 					// Reset form
