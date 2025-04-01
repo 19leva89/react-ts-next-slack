@@ -127,6 +127,14 @@ const Editor = ({
 		}
 	}
 
+	const onEmojiSelect = (emoji: any) => {
+		const quill = quillRef.current
+
+		if (quill) {
+			quill.insertText(quill.getSelection()?.index || 0, emoji.native)
+		}
+	}
+
 	// Check if the editor is empty
 	const isEmpty = text.replace(/<(.|\n)*?>/g, '').trim().length === 0
 
@@ -142,8 +150,8 @@ const Editor = ({
 						</Button>
 					</Hint>
 
-					<EmojiPopover onEmojiSelect={() => {}}>
-						<Button variant="ghost" size="iconSm" disabled={disabled} onClick={() => {}}>
+					<EmojiPopover onEmojiSelect={onEmojiSelect}>
+						<Button variant="ghost" size="iconSm" disabled={disabled}>
 							<SmileIcon size={16} />
 						</Button>
 					</EmojiPopover>
