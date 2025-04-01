@@ -15,6 +15,9 @@ Styling and UI Frameworks:
 - shadcn/ui (stylization)
 - Tailwind CSS (stylization)
 
+Text Editing:
+- Quill (text editor)
+
 Utilities and Libraries:
 - PostCSS (transforms CSS code to AST)
 - React Use (custom React Hooks)
