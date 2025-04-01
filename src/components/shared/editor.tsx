@@ -7,7 +7,7 @@ import { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { cn } from '@/lib'
 import { Button } from '@/components/ui'
-import { Hint } from '@/components/shared'
+import { EmojiPopover, Hint } from '@/components/shared'
 
 import 'quill/dist/quill.snow.css'
 
@@ -142,11 +142,11 @@ const Editor = ({
 						</Button>
 					</Hint>
 
-					<Hint label="Emoji" side="top">
+					<EmojiPopover onEmojiSelect={() => {}}>
 						<Button variant="ghost" size="iconSm" disabled={disabled} onClick={() => {}}>
 							<SmileIcon size={16} />
 						</Button>
-					</Hint>
+					</EmojiPopover>
 
 					{variant === 'create' && (
 						<Hint label="Image" side="top">
@@ -191,11 +191,18 @@ const Editor = ({
 				</div>
 			</div>
 
-			<div className="flex justify-end p-2 text-[10px] text-muted-foreground">
-				<p>
-					<strong>Shift + Enter</strong> to create a new line
-				</p>
-			</div>
+			{variant === 'create' && (
+				<div
+					className={cn(
+						'flex justify-end p-2 text-[10px] text-muted-foreground opacity-0 transition-opacity ease-in-out duration-300',
+						!isEmpty && 'opacity-100',
+					)}
+				>
+					<p>
+						<strong>Shift + Enter</strong> to create a new line
+					</p>
+				</div>
+			)}
 		</div>
 	)
 }

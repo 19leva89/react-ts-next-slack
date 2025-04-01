@@ -30,6 +30,7 @@ export {
 	DropdownMenuTrigger,
 } from './dropdown-menu'
 export { Input } from './input'
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './popover'
 export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './input-otp'
 export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './resizable'
 export { Separator } from './separator'
