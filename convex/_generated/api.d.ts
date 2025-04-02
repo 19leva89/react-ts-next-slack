@@ -18,6 +18,7 @@ import type * as http from "../http.js";
 import type * as models_channels from "../models/channels.js";
 import type * as models_members from "../models/members.js";
 import type * as models_messages from "../models/messages.js";
+import type * as models_upload from "../models/upload.js";
 import type * as models_users from "../models/users.js";
 import type * as models_workspaces from "../models/workspaces.js";
 
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   "models/channels": typeof models_channels;
   "models/members": typeof models_members;
   "models/messages": typeof models_messages;
+  "models/upload": typeof models_upload;
   "models/users": typeof models_users;
   "models/workspaces": typeof models_workspaces;
 }>;
