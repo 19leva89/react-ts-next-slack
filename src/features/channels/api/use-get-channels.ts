@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const useGetChannels = ({ workspaceId }: Props) => {
-	const data = useQuery(api.channels.get, { workspaceId })
+	const data = useQuery(api.models.channels.get, { workspaceId })
 	const isLoading = data === undefined
 
 	return { data, isLoading }

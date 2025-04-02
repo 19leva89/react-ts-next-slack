@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const useCurrentMember = ({ workspaceId }: Props) => {
-	const data = useQuery(api.members.current, { workspaceId })
+	const data = useQuery(api.models.members.current, { workspaceId })
 	const isLoading = data === undefined
 
 	return { data, isLoading }

@@ -66,7 +66,14 @@ const Editor = ({
 						enter: {
 							key: 'Enter',
 							handler: () => {
-								//TODO Submit form
+								const text = quill.getText()
+								const addedImage = imageRef.current?.files?.[0] || null
+
+								const isEmpty = !addedImage && text.replace(/<(.|\n)*?>/g, '').trim().length === 0
+								if (isEmpty) return
+
+								const body = JSON.stringify(quill.getContents())
+								submitRef.current({ body, image: addedImage })
 							},
 						},
 						shift_enter: {
@@ -138,8 +145,12 @@ const Editor = ({
 		}
 	}
 
+	const onSubmitClick = () => {
+		onSubmit({ body: JSON.stringify(quillRef.current?.getContents()), image })
+	}
+
 	// Check if the editor is empty
-	const isEmpty = text.replace(/<(.|\n)*?>/g, '').trim().length === 0
+	const isEmpty = !image && text.replace(/<(.|\n)*?>/g, '').trim().length === 0
 
 	return (
 		<div className="flex flex-col">
@@ -151,7 +162,12 @@ const Editor = ({
 				className="hidden"
 			/>
 
-			<div className="flex flex-col border border-slate-200 rounded-md bg-white overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition">
+			<div
+				className={cn(
+					'flex flex-col border border-slate-200 rounded-md bg-white overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition',
+					disabled && 'pointer-events-none opacity-50',
+				)}
+			>
 				<div ref={containerRef} className="h-full ql-custom" />
 
 				{!!image && (
@@ -207,14 +223,14 @@ const Editor = ({
 
 					{variant === 'update' && (
 						<div className="flex items-center gap-x-2 ml-auto">
-							<Button variant="outline" size="sm" disabled={disabled} onClick={() => {}}>
+							<Button variant="outline" size="sm" disabled={disabled} onClick={onCancel}>
 								Cancel
 							</Button>
 
 							<Button
 								size="sm"
 								disabled={disabled || isEmpty}
-								onClick={() => {}}
+								onClick={onSubmitClick}
 								className="text-white bg-[#007a5a] hover:bg-[#007a5a]/80"
 							>
 								Save
@@ -226,7 +242,7 @@ const Editor = ({
 						<Button
 							size="iconSm"
 							disabled={disabled || isEmpty}
-							onClick={() => {}}
+							onClick={onSubmitClick}
 							className={cn(
 								'ml-auto',
 								isEmpty

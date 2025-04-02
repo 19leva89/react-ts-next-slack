@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const useGetWorkspaceInfo = ({ id }: Props) => {
-	const data = useQuery(api.workspaces.getInfoById, { id })
+	const data = useQuery(api.models.workspaces.getInfoById, { id })
 	const isLoading = data === undefined
 
 	return { data, isLoading }

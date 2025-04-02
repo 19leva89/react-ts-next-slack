@@ -1,7 +1,15 @@
 import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
-import { mutation, query } from './_generated/server'
+import { Id } from '../_generated/dataModel'
+import { mutation, query, QueryCtx } from '../_generated/server'
+
+const getMember = async (ctx: QueryCtx, workspaceId: Id<'workspaces'>, userId: Id<'users'>) => {
+	return ctx.db
+		.query('members')
+		.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', workspaceId).eq('userId', userId))
+		.unique()
+}
 
 export const create = mutation({
 	args: { name: v.string(), workspaceId: v.id('workspaces') },
@@ -12,10 +20,7 @@ export const create = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.workspaceId).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.workspaceId, userId)
 
 		if (!member || member.role !== 'owner') {
 			throw new ConvexError("You don't have permission to create a channel in this workspace")
@@ -38,10 +43,7 @@ export const get = query({
 			return []
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.workspaceId).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.workspaceId, userId)
 
 		if (!member) {
 			return []
@@ -71,12 +73,7 @@ export const getById = query({
 			return null
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) =>
-				q.eq('workspaceId', channel.workspaceId).eq('userId', userId),
-			)
-			.unique()
+		const member = await getMember(ctx, channel.workspaceId, userId)
 
 		if (!member) {
 			return null
@@ -101,12 +98,7 @@ export const update = mutation({
 			throw new ConvexError('Channel not found')
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) =>
-				q.eq('workspaceId', channel.workspaceId).eq('userId', userId),
-			)
-			.unique()
+		const member = await getMember(ctx, channel.workspaceId, userId)
 
 		if (!member || member.role !== 'owner') {
 			throw new ConvexError("You don't have permission to update this channel")
@@ -133,12 +125,7 @@ export const remove = mutation({
 			throw new ConvexError('Channel not found')
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) =>
-				q.eq('workspaceId', channel.workspaceId).eq('userId', userId),
-			)
-			.unique()
+		const member = await getMember(ctx, channel.workspaceId, userId)
 
 		if (!member || member.role !== 'owner') {
 			throw new ConvexError("You don't have permission to remove this channel")

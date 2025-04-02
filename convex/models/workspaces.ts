@@ -1,7 +1,8 @@
 import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
-import { mutation, query } from './_generated/server'
+import { Id } from '../_generated/dataModel'
+import { mutation, query, QueryCtx } from '../_generated/server'
 
 const generateCode = () => {
 	const code = Array.from(
@@ -10,6 +11,13 @@ const generateCode = () => {
 	).join('')
 
 	return code
+}
+
+const getMember = async (ctx: QueryCtx, workspaceId: Id<'workspaces'>, userId: Id<'users'>) => {
+	return ctx.db
+		.query('members')
+		.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', workspaceId).eq('userId', userId))
+		.unique()
 }
 
 export const create = mutation({
@@ -72,10 +80,7 @@ export const getById = query({
 			return null
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.id).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.id, userId)
 
 		if (!member) {
 			return null
@@ -94,10 +99,7 @@ export const getInfoById = query({
 			return null
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.id).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.id, userId)
 
 		const workspace = await ctx.db.get(args.id)
 
@@ -114,10 +116,7 @@ export const update = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.id).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.id, userId)
 
 		if (!member || member.role !== 'owner') {
 			throw new ConvexError("You don't have permission to update this workspace")
@@ -138,10 +137,7 @@ export const remove = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.id).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.id, userId)
 
 		if (!member || member.role !== 'owner') {
 			throw new ConvexError("You don't have permission to remove this workspace")
@@ -183,12 +179,9 @@ export const join = mutation({
 			throw new ConvexError('Invalid join code')
 		}
 
-		const existingMember = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.workspaceId).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, workspace._id, userId)
 
-		if (existingMember) {
+		if (member) {
 			throw new ConvexError('Already a member of this workspace')
 		}
 
@@ -207,10 +200,7 @@ export const newJoinCode = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await ctx.db
-			.query('members')
-			.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', args.workspaceId).eq('userId', userId))
-			.unique()
+		const member = await getMember(ctx, args.workspaceId, userId)
 
 		if (!member || member.role !== 'owner') {
 			throw new ConvexError("You don't have permission to join this workspace")

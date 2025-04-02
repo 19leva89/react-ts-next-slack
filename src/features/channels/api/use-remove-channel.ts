@@ -27,7 +27,7 @@ export const useRemoveChannel = () => {
 	const isError = useMemo(() => status === 'error', [status])
 	const isSettled = useMemo(() => status === 'settled', [status])
 
-	const mutation = useMutation(api.channels.remove)
+	const mutation = useMutation(api.models.channels.remove)
 
 	const mutate = useCallback(
 		async (values: RequestType, options?: Options) => {

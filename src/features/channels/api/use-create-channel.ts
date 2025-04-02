@@ -28,7 +28,7 @@ export const useCreateChannel = () => {
 	const isError = useMemo(() => status === 'error', [status])
 	const isSettled = useMemo(() => status === 'settled', [status])
 
-	const mutation = useMutation(api.channels.create)
+	const mutation = useMutation(api.models.channels.create)
 
 	const mutate = useCallback(
 		async (values: RequestType, options?: Options) => {
