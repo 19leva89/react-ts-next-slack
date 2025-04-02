@@ -1,17 +1,9 @@
 import { v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
-import { Id } from '../_generated/dataModel'
-import { query, QueryCtx } from '../_generated/server'
-
-const populateUser = (ctx: QueryCtx, id: Id<'users'>) => ctx.db.get(id)
-
-const getMember = async (ctx: QueryCtx, workspaceId: Id<'workspaces'>, userId: Id<'users'>) => {
-	return ctx.db
-		.query('members')
-		.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', workspaceId).eq('userId', userId))
-		.unique()
-}
+import { query } from '../_generated/server'
+import { getMember } from '../lib/get_member'
+import { populateUser } from '../lib/populate_user'
 
 export const get = query({
 	args: { workspaceId: v.id('workspaces') },

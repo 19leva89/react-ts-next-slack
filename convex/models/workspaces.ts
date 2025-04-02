@@ -1,24 +1,9 @@
 import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
-import { Id } from '../_generated/dataModel'
-import { mutation, query, QueryCtx } from '../_generated/server'
-
-const generateCode = () => {
-	const code = Array.from(
-		{ length: 6 },
-		() => '0123456789abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 36)],
-	).join('')
-
-	return code
-}
-
-const getMember = async (ctx: QueryCtx, workspaceId: Id<'workspaces'>, userId: Id<'users'>) => {
-	return ctx.db
-		.query('members')
-		.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', workspaceId).eq('userId', userId))
-		.unique()
-}
+import { getMember } from '../lib/get_member'
+import { generateCode } from '../lib/generate_code'
+import { mutation, query } from '../_generated/server'
 
 export const create = mutation({
 	args: { name: v.string() },

@@ -1,15 +1,9 @@
 import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
+import { paginationOptsValidator } from 'convex/server'
 
-import { Id } from '../_generated/dataModel'
-import { mutation, QueryCtx } from '../_generated/server'
-
-const getMember = async (ctx: QueryCtx, workspaceId: Id<'workspaces'>, userId: Id<'users'>) => {
-	return ctx.db
-		.query('members')
-		.withIndex('by_workspace_id_user_id', (q) => q.eq('workspaceId', workspaceId).eq('userId', userId))
-		.unique()
-}
+import { getMember } from '../lib/get_member'
+import { mutation, query } from '../_generated/server'
 
 export const create = mutation({
 	args: {
@@ -58,5 +52,47 @@ export const create = mutation({
 		})
 
 		return messageId
+	},
+})
+
+export const get = query({
+	args: {
+		channelId: v.optional(v.id('channels')),
+		conversationId: v.optional(v.id('conversations')),
+		parentMessageId: v.optional(v.id('messages')),
+		paginationOpts: paginationOptsValidator,
+	},
+	handler: async (ctx, args) => {
+		const userId = await getAuthUserId(ctx)
+
+		if (!userId) {
+			return []
+		}
+
+		let _conversationId = args.conversationId
+
+		// Only possible if we are replying in a thread in 1:1 conversation
+		if (!args.conversationId && !args.channelId && args.parentMessageId) {
+			const parentMessage = await ctx.db.get(args.parentMessageId)
+
+			if (!parentMessage) {
+				throw new ConvexError('Parent message not found')
+			}
+
+			_conversationId = parentMessage.conversationId
+		}
+
+		const results = await ctx.db
+			.query('messages')
+			.withIndex('by_channel_id_parent_message_id_conversation_id', (q) =>
+				q
+					.eq('channelId', args.channelId)
+					.eq('parentMessageId', args.parentMessageId)
+					.eq('conversationId', _conversationId),
+			)
+			.order('desc')
+			.paginate(args.paginationOpts)
+
+		return results
 	},
 })
