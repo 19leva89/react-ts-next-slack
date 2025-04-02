@@ -9,8 +9,8 @@ type RequestType = {
 	image?: Id<'_storage'>
 	workspaceId: Id<'workspaces'>
 	channelId?: Id<'channels'>
+	conversationId?: Id<'conversations'>
 	parentMessageId?: Id<'messages'>
-	// TODO: add conversationId
 }
 
 type ResponseType = Id<'messages'> | null

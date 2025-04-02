@@ -17,8 +17,8 @@ export const create = mutation({
 		image: v.optional(v.id('_storage')),
 		workspaceId: v.id('workspaces'),
 		channelId: v.optional(v.id('channels')),
+		conversationId: v.optional(v.id('conversations')),
 		parentMessageId: v.optional(v.id('messages')),
-		// TODO: add conversationId
 	},
 	handler: async (ctx, args) => {
 		const userId = await getAuthUserId(ctx)
@@ -33,7 +33,18 @@ export const create = mutation({
 			throw new ConvexError("You don't have permission to create a message")
 		}
 
-		// TODO: Handle conversationId
+		let _conversationId = args.conversationId
+
+		// Only possible if we are replying in a thread in 1:1 conversation
+		if (!args.conversationId && !args.channelId && args.parentMessageId) {
+			const parentMessage = await ctx.db.get(args.parentMessageId)
+
+			if (!parentMessage) {
+				throw new ConvexError('Parent message not found')
+			}
+
+			_conversationId = parentMessage.conversationId
+		}
 
 		const messageId = await ctx.db.insert('messages', {
 			body: args.body,
@@ -41,8 +52,8 @@ export const create = mutation({
 			memberId: member._id,
 			workspaceId: args.workspaceId,
 			channelId: args.channelId,
+			conversationId: _conversationId,
 			parentMessageId: args.parentMessageId,
-			// TODO: add conversationId
 			updatedAt: Date.now(),
 		})
 

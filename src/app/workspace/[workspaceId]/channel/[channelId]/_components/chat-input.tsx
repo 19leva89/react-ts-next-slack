@@ -46,7 +46,7 @@ export const ChatInput = ({ placeholder }: Props) => {
 			const values: CreateMessageValues = { body, image: undefined, workspaceId, channelId }
 
 			if (image) {
-				const url = await generateUploadUrl({}, { throwOnError: true })
+				const url = await generateUploadUrl({ throwOnError: true })
 
 				if (!url) {
 					throw new ConvexError('Failed to generate upload url')

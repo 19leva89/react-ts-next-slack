@@ -131,6 +131,8 @@ export const remove = mutation({
 			throw new ConvexError("You don't have permission to remove this channel")
 		}
 
+		// TODO: Remove associated messages
+
 		await ctx.db.delete(args.id)
 
 		return args.id
