@@ -38,7 +38,7 @@ const Editor = ({
 }: Props) => {
 	const [text, setText] = useState<string>('')
 	const [image, setImage] = useState<File | null>(null)
-	const [isToolbarVisible, setToolbarVisible] = useState<boolean>(true)
+	const [isToolbarVisible, setToolbarVisible] = useState<boolean>(false)
 
 	const submitRef = useRef(onSubmit)
 	const disabledRef = useRef(disabled)
@@ -92,6 +92,13 @@ const Editor = ({
 		quillRef.current = quill
 		quillRef.current.focus()
 
+		const toolbarElement = containerRef.current?.querySelector('.ql-toolbar')
+		if (toolbarElement) {
+			toolbarElement.classList.add('hidden')
+		}
+
+		setToolbarVisible(false)
+
 		if (innerRef) {
 			innerRef.current = quill
 		}
@@ -134,6 +141,10 @@ const Editor = ({
 
 		if (toolbarElement) {
 			toolbarElement.classList.toggle('hidden')
+
+			if (!toolbarElement.classList.contains('hidden')) {
+				quillRef.current?.focus()
+			}
 		}
 	}
 

@@ -1,2 +1,5 @@
 export { Hint } from './hint'
 export { EmojiPopover } from './emoji-popover'
+export { MessageList } from './message-list'
+export { Message } from './message'
+export { Thumbnail } from './thumbnail'

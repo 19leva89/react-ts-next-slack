@@ -37,7 +37,7 @@ export const UserItem = ({ id, label = 'Member', image, variant }: Props) => {
 		<Button variant="transparent" size="sm" className={cn(userItemVariants({ variant }))} asChild>
 			<Link href={`/workspace/${workspaceId}/member/${id}`}>
 				<Avatar className="size-5 rounded-md mr-1">
-					<AvatarImage src={image} className="rounded-md" />
+					<AvatarImage src={image} alt={label} className="rounded-md" />
 
 					<AvatarFallback className="rounded-md bg-sky-500 text-white text-xs">
 						{avatarFallback}
