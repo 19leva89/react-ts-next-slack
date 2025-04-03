@@ -2,8 +2,8 @@ import { format } from 'date-fns'
 import dynamic from 'next/dynamic'
 
 import { formatFullTime } from '@/lib'
-import { Hint, Thumbnail } from '@/components/shared'
 import { Doc, Id } from '../../../convex/_generated/dataModel'
+import { Hint, Thumbnail, Toolbar } from '@/components/shared'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
 
 const Renderer = dynamic(() => import('@/components/shared/renderer'), { ssr: false })
@@ -106,6 +106,17 @@ export const Message = ({
 					{updatedAt ? <span className="text-xs text-muted-foreground">(edited)</span> : null}
 				</div>
 			</div>
+			{!isEditing && (
+				<Toolbar
+					isAuthor={isAuthor}
+					isPending={false}
+					handleEdit={() => setEditingId(id)}
+					handleThread={() => {}}
+					handleDelete={() => {}}
+					handleReaction={() => {}}
+					hideThreadButton={hideThreadButton}
+				/>
+			)}
 		</div>
 	)
 }
