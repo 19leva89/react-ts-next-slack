@@ -3,6 +3,7 @@ import { getAuthUserId } from '@convex-dev/auth/server'
 import { paginationOptsValidator } from 'convex/server'
 
 import { getMember } from '../lib/get_member'
+import { getMessage } from '../lib/get_message'
 import { Doc, Id } from '../_generated/dataModel'
 import { populateUser } from '../lib/populate_user'
 import { mutation, query } from '../_generated/server'
@@ -155,5 +156,62 @@ export const get = query({
 				)
 			).filter((message): message is NonNullable<typeof message> => message !== null),
 		}
+	},
+})
+
+export const update = mutation({
+	args: {
+		id: v.id('messages'),
+		body: v.string(),
+	},
+	handler: async (ctx, args) => {
+		const userId = await getAuthUserId(ctx)
+
+		if (!userId) {
+			throw new ConvexError('Unauthorized')
+		}
+
+		const message = await getMessage(ctx, args.id)
+
+		if (!message) {
+			throw new ConvexError('Message not found')
+		}
+
+		const member = await getMember(ctx, message.workspaceId, userId)
+
+		if (!member || member._id !== message.memberId) {
+			throw new ConvexError("You don't have permission to update this message")
+		}
+
+		await ctx.db.patch(args.id, { body: args.body, updatedAt: Date.now() })
+
+		return args.id
+	},
+})
+
+export const remove = mutation({
+	args: { id: v.id('messages') },
+	handler: async (ctx, args) => {
+		const userId = await getAuthUserId(ctx)
+
+		if (!userId) {
+			throw new ConvexError('Unauthorized')
+		}
+
+		const message = await getMessage(ctx, args.id)
+
+		if (!message) {
+			throw new ConvexError('Message not found')
+		}
+
+		const member = await getMember(ctx, message.workspaceId, userId)
+
+		if (!member || member._id !== message.memberId) {
+			throw new ConvexError("You don't have permission to update this message")
+		}
+
+		await ctx.db.delete(args.id)
+
+		return args.id
 	},
 })

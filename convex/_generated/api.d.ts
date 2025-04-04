@@ -19,6 +19,7 @@ import type * as lib_generate_code from "../lib/generate_code.js";
 import type * as lib_get_channel from "../lib/get_channel.js";
 import type * as lib_get_channels from "../lib/get_channels.js";
 import type * as lib_get_member from "../lib/get_member.js";
+import type * as lib_get_message from "../lib/get_message.js";
 import type * as lib_populate_member from "../lib/populate_member.js";
 import type * as lib_populate_reactions from "../lib/populate_reactions.js";
 import type * as lib_populate_thread from "../lib/populate_thread.js";
@@ -45,6 +46,7 @@ declare const fullApi: ApiFromModules<{
   "lib/get_channel": typeof lib_get_channel;
   "lib/get_channels": typeof lib_get_channels;
   "lib/get_member": typeof lib_get_member;
+  "lib/get_message": typeof lib_get_message;
   "lib/populate_member": typeof lib_populate_member;
   "lib/populate_reactions": typeof lib_populate_reactions;
   "lib/populate_thread": typeof lib_populate_thread;
