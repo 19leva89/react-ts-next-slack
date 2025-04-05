@@ -1,10 +1,8 @@
 import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
-import { getMember } from '../lib/get_member'
-import { getChannel } from '../lib/get_channel'
-import { getChannels } from '../lib/get_channels'
 import { mutation, query } from '../_generated/server'
+import { getChannel, getChannels, getMember } from '../lib'
 
 export const create = mutation({
 	args: { name: v.string(), workspaceId: v.id('workspaces') },

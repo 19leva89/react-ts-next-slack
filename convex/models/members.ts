@@ -2,8 +2,7 @@ import { v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
 import { query } from '../_generated/server'
-import { getMember } from '../lib/get_member'
-import { populateUser } from '../lib/populate_user'
+import { getMember, populateUser } from '../lib'
 
 export const get = query({
 	args: { workspaceId: v.id('workspaces') },

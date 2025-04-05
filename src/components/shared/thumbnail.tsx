@@ -15,7 +15,7 @@ export const Thumbnail = ({ url }: Props) => {
 				</div>
 			</DialogTrigger>
 
-			<DialogContent className="max-w-200 p-0 border-none bg-transparent shadow-none">
+			<DialogContent className="max-w-200 p-1 border-none bg-transparent shadow-none">
 				<DialogTitle className="hidden" />
 
 				<DialogDescription className="hidden" />

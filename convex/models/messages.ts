@@ -2,14 +2,16 @@ import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 import { paginationOptsValidator } from 'convex/server'
 
-import { getMember } from '../lib/get_member'
-import { getMessage } from '../lib/get_message'
+import {
+	getMember,
+	getMessage,
+	populateMember,
+	populateReactions,
+	populateThread,
+	populateUser,
+} from '../lib'
 import { Doc, Id } from '../_generated/dataModel'
-import { populateUser } from '../lib/populate_user'
 import { mutation, query } from '../_generated/server'
-import { populateMember } from '../lib/populate_member'
-import { populateThread } from '../lib/populate_thread'
-import { populateReactions } from '../lib/populate_reactions'
 
 export const create = mutation({
 	args: {

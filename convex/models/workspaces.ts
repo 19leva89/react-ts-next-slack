@@ -1,8 +1,7 @@
 import { ConvexError, v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
-import { getMember } from '../lib/get_member'
-import { generateCode } from '../lib/generate_code'
+import { generateCode, getMember } from '../lib'
 import { mutation, query } from '../_generated/server'
 
 export const create = mutation({
