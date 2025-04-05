@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { LoaderIcon } from 'lucide-react'
 import { differenceInMinutes, format } from 'date-fns'
 
 import { formatDateLabel } from '@/lib'
@@ -100,6 +101,38 @@ export const MessageList = ({
 					})}
 				</div>
 			))}
+
+			{/* Loading messages when you scroll up */}
+			<div
+				ref={(el) => {
+					if (el) {
+						const observer = new IntersectionObserver(
+							([entry]) => {
+								if (entry.isIntersecting && canLoadMore) {
+									loadMore()
+								}
+							},
+							{
+								threshold: 1,
+							},
+						)
+
+						observer.observe(el)
+						return () => observer.disconnect()
+					}
+				}}
+				className="h-1"
+			/>
+
+			{isLoadingMore && (
+				<div className="relative my-2 text-center">
+					<hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
+
+					<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
+						<LoaderIcon size={16} className="animate-spin" />
+					</span>
+				</div>
+			)}
 
 			{variant === 'channel' && channelName && channelCreationTime && (
 				<ChannelHero name={channelName} creationTime={channelCreationTime} />
