@@ -6,11 +6,13 @@ import {
 	SendHorizontalIcon,
 } from 'lucide-react'
 
-import { UserItem } from './user-item'
-import { SidebarItem } from './sidebar-item'
-import { WorkspaceHeader } from './workspace-header'
+import {
+	SidebarItem,
+	UserItem,
+	WorkspaceHeader,
+	WorkspaceSection,
+} from '@/app/workspace/[workspaceId]/_components'
 import { useChannelId } from '@/hooks/use-channel-id'
-import { WorkspaceSection } from './workspace-section'
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
 import { useGetMembers } from '@/features/members/api/use-get-members'
 import { useGetChannels } from '@/features/channels/api/use-get-channels'

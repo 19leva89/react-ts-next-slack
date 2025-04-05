@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import dynamic from 'next/dynamic'
 
 import { cn, formatFullTime } from '@/lib'
+import { usePanel } from '@/hooks/use-panel'
 import { useConfirm } from '@/hooks/use-confirm'
 import { Doc, Id } from '../../../convex/_generated/dataModel'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
@@ -58,6 +59,7 @@ export const Message = ({
 		'Are you sure you want to delete this message? This cannot be undone!',
 	)
 
+	const { parentMessageId, onOpenMessage, onClose } = usePanel()
 	const { mutate: updateMessage, isPending: isUpdatingMessage } = useUpdateMessage()
 	const { mutate: removeMessage, isPending: isRemovingMessage } = useRemoveMessage()
 	const { mutate: toggleReaction, isPending: isTogglingReaction } = useToggleReaction()
@@ -95,7 +97,9 @@ export const Message = ({
 				onSuccess: () => {
 					toast.success('Message deleted')
 
-					// TODO: close thread if opened
+					if (parentMessageId === id) {
+						onClose()
+					}
 				},
 				onError: () => {
 					toast.error('Failed to delete message')
@@ -150,7 +154,7 @@ export const Message = ({
 							isAuthor={isAuthor}
 							isPending={isPending}
 							handleEdit={() => setEditingId(id)}
-							handleThread={() => {}}
+							handleThread={() => onOpenMessage(id)}
 							handleDelete={handleRemove}
 							handleReaction={handleReaction}
 							hideThreadButton={hideThreadButton}
@@ -225,7 +229,7 @@ export const Message = ({
 						isAuthor={isAuthor}
 						isPending={isPending}
 						handleEdit={() => setEditingId(id)}
-						handleThread={() => {}}
+						handleThread={() => onOpenMessage(id)}
 						handleDelete={handleRemove}
 						handleReaction={handleReaction}
 						hideThreadButton={hideThreadButton}

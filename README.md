@@ -1,3 +1,5 @@
+nuqs
+
 Core Technologies:
 - React 19
 - TypeScript

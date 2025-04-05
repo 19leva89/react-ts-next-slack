@@ -1,13 +1,19 @@
 'use client'
 
+import { LoaderIcon } from 'lucide-react'
 import { PropsWithChildren } from 'react'
 
-import { Toolbar } from './_components/toolbar'
-import { Sidebar } from './_components/sidebar'
-import { WorkspaceSidebar } from './_components/workspace-sidebar'
+import { usePanel } from '@/hooks/use-panel'
+import { Id } from '../../../../convex/_generated/dataModel'
+import { Thread } from '@/features/messages/components/thread'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui'
+import { Sidebar, Toolbar, WorkspaceSidebar } from '@/app/workspace/[workspaceId]/_components'
 
 const WorkspaceIdLayout = ({ children }: PropsWithChildren) => {
+	const { parentMessageId, onClose } = usePanel()
+
+	const showPanel = !!parentMessageId
+
 	return (
 		<div className="h-full">
 			<Toolbar />
@@ -23,6 +29,22 @@ const WorkspaceIdLayout = ({ children }: PropsWithChildren) => {
 					<ResizableHandle withHandle />
 
 					<ResizablePanel minSize={20}>{children}</ResizablePanel>
+
+					{showPanel && (
+						<>
+							<ResizableHandle withHandle />
+
+							<ResizablePanel minSize={20} defaultSize={29}>
+								{parentMessageId ? (
+									<Thread messageId={parentMessageId as Id<'messages'>} onClose={onClose} />
+								) : (
+									<div className="flex items-center justify-center h-full">
+										<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
+									</div>
+								)}
+							</ResizablePanel>
+						</>
+					)}
 				</ResizablePanelGroup>
 			</div>
 		</div>

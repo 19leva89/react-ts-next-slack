@@ -89,7 +89,7 @@ export const Header = ({ title }: Props) => {
 	}
 
 	return (
-		<div className="flex items-center h-[49px] px-4 border-b bg-white overflow-hidden">
+		<div className="flex items-center h-1/18 px-4 border-b bg-white overflow-hidden">
 			<Dialog>
 				<DialogTrigger asChild>
 					<Button variant="ghost" size="sm" className="w-auto px-2 text-lg font-semibold overflow-auto">

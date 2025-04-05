@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import { PropsWithChildren } from 'react'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { ConvexAuthNextjsServerProvider } from '@convex-dev/auth/nextjs/server'
 
 import { Toaster } from '@/components/ui'
@@ -20,11 +21,13 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 				<body className={cn('min-h-screen font-sans antialiased grainy', inter.className)}>
 					<ConvexClientProvider>
 						<JotaiProvider>
-							<Toaster position="bottom-right" expand={false} richColors />
+							<NuqsAdapter>
+								<Toaster position="bottom-right" expand={false} richColors />
 
-							<Modals />
+								<Modals />
 
-							{children}
+								{children}
+							</NuqsAdapter>
 						</JotaiProvider>
 					</ConvexClientProvider>
 				</body>

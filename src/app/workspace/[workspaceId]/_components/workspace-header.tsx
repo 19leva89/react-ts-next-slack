@@ -10,9 +10,8 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui'
 import { Hint } from '@/components/shared'
-import { InviteModal } from './invite-modal'
-import { PreferencesModal } from './preferences-modal'
 import { Doc } from '../../../../../convex/_generated/dataModel'
+import { InviteModal, PreferencesModal } from '@/app/workspace/[workspaceId]/_components'
 
 interface Props {
 	workspace: Doc<'workspaces'>
