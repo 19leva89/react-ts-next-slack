@@ -73,7 +73,11 @@ export const get = query({
 		const userId = await getAuthUserId(ctx)
 
 		if (!userId) {
-			return []
+			return {
+				page: [],
+				isDone: true,
+				continueCursor: '',
+			}
 		}
 
 		let _conversationId = args.conversationId

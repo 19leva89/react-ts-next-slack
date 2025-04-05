@@ -20,8 +20,8 @@ type EditorValue = {
 type CreateMessageValues = {
 	body: string
 	image: Id<'_storage'> | undefined
-	workspaceId: Id<'workspaces'>
 	channelId: Id<'channels'>
+	workspaceId: Id<'workspaces'>
 }
 interface Props {
 	placeholder: string
@@ -43,7 +43,7 @@ export const ChatInput = ({ placeholder }: Props) => {
 			setIsPending(true)
 			editorRef.current?.disable()
 
-			const values: CreateMessageValues = { body, image: undefined, workspaceId, channelId }
+			const values: CreateMessageValues = { body, image: undefined, channelId, workspaceId }
 
 			if (image) {
 				const url = await generateUploadUrl({ throwOnError: true })

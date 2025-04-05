@@ -14,7 +14,11 @@ const ChannelIdPage = () => {
 	const { results, status, loadMore } = useGetMessages({ channelId })
 	const { data: channel, isLoading: channelLoading } = useGetChannel({ id: channelId })
 
-	if (channelLoading || status === 'LoadingFirstPage') {
+	const canLoadMore = status === 'CanLoadMore'
+	const isLoadingMore = status === 'LoadingMore'
+	const isLoadingFirstPage = status === 'LoadingFirstPage'
+
+	if (channelLoading || isLoadingFirstPage) {
 		return (
 			<div className="flex flex-1 items-center justify-center h-full">
 				<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
@@ -41,8 +45,8 @@ const ChannelIdPage = () => {
 				channelCreationTime={channel._creationTime}
 				data={results}
 				loadMore={loadMore}
-				isLoadingMore={status === 'LoadingMore'}
-				canLoadMore={status === 'CanLoadMore'}
+				isLoadingMore={isLoadingMore}
+				canLoadMore={canLoadMore}
 			/>
 
 			<ChatInput placeholder={`Message # ${channel.name}`} />

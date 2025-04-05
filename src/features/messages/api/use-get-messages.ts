@@ -11,11 +11,11 @@ interface Props {
 	parentMessageId?: Id<'messages'>
 }
 
-export type GetMessagesReturnType = Exclude<typeof api.models.messages.get._returnType, never[]>['page']
+export type GetMessagesReturnType = (typeof api.models.messages.get._returnType)['page']
 
 export const useGetMessages = ({ channelId, conversationId, parentMessageId }: Props) => {
 	const { results, status, loadMore } = usePaginatedQuery(
-		api.models.messages.get as any,
+		api.models.messages.get,
 		{ channelId, conversationId, parentMessageId },
 		{ initialNumItems: BATCH_SIZE },
 	)
