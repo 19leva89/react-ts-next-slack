@@ -2,7 +2,7 @@ import { v } from 'convex/values'
 import { getAuthUserId } from '@convex-dev/auth/server'
 
 import { query } from '../_generated/server'
-import { getMember, populateUser } from '../lib'
+import { getMember, populateMember, populateUser } from '../lib'
 
 export const get = query({
 	args: { workspaceId: v.id('workspaces') },
@@ -13,9 +13,9 @@ export const get = query({
 			return []
 		}
 
-		const member = await getMember(ctx, args.workspaceId, userId)
+		const currentMember = await getMember(ctx, args.workspaceId, userId)
 
-		if (!member) {
+		if (!currentMember) {
 			return []
 		}
 
@@ -38,6 +38,40 @@ export const get = query({
 	},
 })
 
+export const getById = query({
+	args: { id: v.id('members') },
+	handler: async (ctx, args) => {
+		const userId = await getAuthUserId(ctx)
+
+		if (!userId) {
+			return null
+		}
+
+		const member = await populateMember(ctx, args.id)
+
+		if (!member) {
+			return null
+		}
+
+		const currentMember = await getMember(ctx, member.workspaceId, userId)
+
+		if (!currentMember) {
+			return null
+		}
+
+		const user = await populateUser(ctx, member.userId)
+
+		if (!user) {
+			return null
+		}
+
+		return {
+			...member,
+			user,
+		}
+	},
+})
+
 export const current = query({
 	args: { workspaceId: v.id('workspaces') },
 	handler: async (ctx, args) => {
@@ -47,12 +81,12 @@ export const current = query({
 			return null
 		}
 
-		const member = await getMember(ctx, args.workspaceId, userId)
+		const currentMember = await getMember(ctx, args.workspaceId, userId)
 
-		if (!member) {
+		if (!currentMember) {
 			return null
 		}
 
-		return member
+		return currentMember
 	},
 })

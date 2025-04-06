@@ -10,8 +10,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '@/components/ui'
-import { useConfirm } from '@/hooks/use-confirm'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useConfirm, useWorkspaceId } from '@/hooks'
 import { useNewJoinCode } from '@/features/workspaces/api/use-new-join-code'
 
 interface Props {

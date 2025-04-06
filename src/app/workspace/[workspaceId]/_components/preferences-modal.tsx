@@ -15,8 +15,7 @@ import {
 	DialogTrigger,
 	Input,
 } from '@/components/ui'
-import { useConfirm } from '@/hooks/use-confirm'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useConfirm, useWorkspaceId } from '@/hooks'
 import { useUpdateWorkspace } from '@/features/workspaces/api/use-update-workspace'
 import { useRemoveWorkspace } from '@/features/workspaces/api/use-remove-workspace'
 

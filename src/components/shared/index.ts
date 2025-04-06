@@ -1,4 +1,5 @@
 export { ChannelHero } from './channel-hero'
+export { ConversationHero } from './conversation-hero'
 export { Hint } from './hint'
 export { EmojiPopover } from './emoji-popover'
 export { MessageList } from './message-list'

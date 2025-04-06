@@ -1,6 +1,7 @@
 export { generateCode } from './generate_code'
 export { getChannel } from './get_channel'
 export { getChannels } from './get_channels'
+export { getConversation } from './get_conversation'
 export { getMember } from './get_member'
 export { getMessage } from './get_message'
 export { populateMember } from './populate_member'

@@ -2,8 +2,8 @@
 
 import { LoaderIcon, TriangleAlertIcon } from 'lucide-react'
 
+import { useChannelId } from '@/hooks'
 import { MessageList } from '@/components/shared'
-import { useChannelId } from '@/hooks/use-channel-id'
 import { useGetChannel } from '@/features/channels/api/use-get-channel'
 import { useGetMessages } from '@/features/messages/api/use-get-messages'
 import { ChatInput, Header } from '@/app/workspace/[workspaceId]/channel/[channelId]/_components'

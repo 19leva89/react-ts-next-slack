@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useWorkspaceId } from '@/hooks'
 import { Id } from '../../../../../convex/_generated/dataModel'
 import { Avatar, AvatarFallback, AvatarImage, Button } from '@/components/ui'
 

@@ -1,8 +1,8 @@
 import { MdOutlineAddReaction } from 'react-icons/md'
 
 import { cn } from '@/lib'
+import { useWorkspaceId } from '@/hooks'
 import { EmojiPopover, Hint } from '@/components/shared'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
 import { Doc, Id } from '../../../convex/_generated/dataModel'
 import { useCurrentMember } from '@/features/members/api/use-current-member'
 

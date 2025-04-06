@@ -29,9 +29,9 @@ export const create = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await getMember(ctx, args.workspaceId, userId)
+		const currentMember = await getMember(ctx, args.workspaceId, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember) {
 			throw new ConvexError("You don't have permission to create a message")
 		}
 
@@ -51,7 +51,7 @@ export const create = mutation({
 		const messageId = await ctx.db.insert('messages', {
 			body: args.body,
 			image: args.image,
-			memberId: member._id,
+			memberId: currentMember._id,
 			workspaceId: args.workspaceId,
 			channelId: args.channelId,
 			conversationId: _conversationId,
@@ -254,9 +254,9 @@ export const update = mutation({
 			throw new ConvexError('Message not found')
 		}
 
-		const member = await getMember(ctx, message.workspaceId, userId)
+		const currentMember = await getMember(ctx, message.workspaceId, userId)
 
-		if (!member || member._id !== message.memberId) {
+		if (!currentMember || currentMember._id !== message.memberId) {
 			throw new ConvexError("You don't have permission to update this message")
 		}
 
@@ -281,9 +281,9 @@ export const remove = mutation({
 			throw new ConvexError('Message not found')
 		}
 
-		const member = await getMember(ctx, message.workspaceId, userId)
+		const currentMember = await getMember(ctx, message.workspaceId, userId)
 
-		if (!member || member._id !== message.memberId) {
+		if (!currentMember || currentMember._id !== message.memberId) {
 			throw new ConvexError("You don't have permission to update this message")
 		}
 

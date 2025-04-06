@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import { useRef, useState } from 'react'
 import { ConvexError } from 'convex/values'
 
-import { useChannelId, useWorkspaceId } from '@/hooks'
+import { useWorkspaceId } from '@/hooks'
 import { Id } from '../../../../../../../convex/_generated/dataModel'
 import { useCreateMessage } from '@/features/messages/api/use-create-message'
 import { useGenerateUploadUrl } from '@/features/upload/api/use-generate-upload-url'
@@ -19,15 +19,15 @@ type EditorValue = {
 type CreateMessageValues = {
 	body: string
 	image: Id<'_storage'> | undefined
-	channelId: Id<'channels'>
 	workspaceId: Id<'workspaces'>
+	conversationId: Id<'conversations'>
 }
 interface Props {
+	conversationId: Id<'conversations'>
 	placeholder: string
 }
 
-export const ChatInput = ({ placeholder }: Props) => {
-	const channelId = useChannelId()
+export const ChatInput = ({ conversationId, placeholder }: Props) => {
 	const workspaceId = useWorkspaceId()
 	const editorRef = useRef<Quill | null>(null)
 
@@ -42,7 +42,7 @@ export const ChatInput = ({ placeholder }: Props) => {
 			setIsPending(true)
 			editorRef.current?.disable()
 
-			const values: CreateMessageValues = { body, image: undefined, channelId, workspaceId }
+			const values: CreateMessageValues = { body, image: undefined, workspaceId, conversationId }
 
 			if (image) {
 				const url = await generateUploadUrl({ throwOnError: true })

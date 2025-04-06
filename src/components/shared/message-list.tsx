@@ -3,10 +3,10 @@ import { LoaderIcon } from 'lucide-react'
 import { differenceInMinutes, format } from 'date-fns'
 
 import { formatDateLabel } from '@/lib'
+import { useWorkspaceId } from '@/hooks'
 import { Id } from '../../../convex/_generated/dataModel'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
-import { ChannelHero, Message } from '@/components/shared'
 import { useCurrentMember } from '@/features/members/api/use-current-member'
+import { ChannelHero, ConversationHero, Message } from '@/components/shared'
 import { GetMessagesReturnType } from '@/features/messages/api/use-get-messages'
 
 const TIME_THRESHOLD = 5
@@ -137,6 +137,8 @@ export const MessageList = ({
 			{variant === 'channel' && channelName && channelCreationTime && (
 				<ChannelHero name={channelName} creationTime={channelCreationTime} />
 			)}
+
+			{variant === 'conversation' && <ConversationHero name={memberName} image={memberImage} />}
 		</div>
 	)
 }

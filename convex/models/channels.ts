@@ -13,9 +13,9 @@ export const create = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await getMember(ctx, args.workspaceId, userId)
+		const currentMember = await getMember(ctx, args.workspaceId, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember || currentMember.role !== 'owner') {
 			throw new ConvexError("You don't have permission to create a channel in this workspace")
 		}
 
@@ -36,9 +36,9 @@ export const get = query({
 			return []
 		}
 
-		const member = await getMember(ctx, args.workspaceId, userId)
+		const currentMember = await getMember(ctx, args.workspaceId, userId)
 
-		if (!member) {
+		if (!currentMember) {
 			return []
 		}
 
@@ -63,9 +63,9 @@ export const getById = query({
 			return null
 		}
 
-		const member = await getMember(ctx, channel.workspaceId, userId)
+		const currentMember = await getMember(ctx, channel.workspaceId, userId)
 
-		if (!member) {
+		if (!currentMember) {
 			return null
 		}
 
@@ -88,9 +88,9 @@ export const update = mutation({
 			throw new ConvexError('Channel not found')
 		}
 
-		const member = await getMember(ctx, channel.workspaceId, userId)
+		const currentMember = await getMember(ctx, channel.workspaceId, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember || currentMember.role !== 'owner') {
 			throw new ConvexError("You don't have permission to update this channel")
 		}
 
@@ -115,9 +115,9 @@ export const remove = mutation({
 			throw new ConvexError('Channel not found')
 		}
 
-		const member = await getMember(ctx, channel.workspaceId, userId)
+		const currentMember = await getMember(ctx, channel.workspaceId, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember || currentMember.role !== 'owner') {
 			throw new ConvexError("You don't have permission to remove this channel")
 		}
 

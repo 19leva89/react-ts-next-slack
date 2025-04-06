@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { ConvexError } from 'convex/values'
 import { ArrowLeftIcon, LoaderIcon } from 'lucide-react'
 
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useWorkspaceId } from '@/hooks'
 import { useJoin } from '@/features/workspaces/api/use-join'
 import { useGetWorkspaceInfo } from '@/features/workspaces/api/use-get-workspace-info'
 import { Button, InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui'

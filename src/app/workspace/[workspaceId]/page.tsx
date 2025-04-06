@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { LoaderIcon, TriangleAlertIcon } from 'lucide-react'
 
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useWorkspaceId } from '@/hooks'
 import { useGetChannels } from '@/features/channels/api/use-get-channels'
 import { useCurrentMember } from '@/features/members/api/use-current-member'
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'

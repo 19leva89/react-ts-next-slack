@@ -3,7 +3,7 @@
 import { LoaderIcon } from 'lucide-react'
 import { PropsWithChildren } from 'react'
 
-import { usePanel } from '@/hooks/use-panel'
+import { usePanel } from '@/hooks'
 import { Id } from '../../../../convex/_generated/dataModel'
 import { Thread } from '@/features/messages/components/thread'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui'

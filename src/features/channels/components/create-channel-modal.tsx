@@ -13,7 +13,7 @@ import {
 	DialogTitle,
 	Input,
 } from '@/components/ui'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useWorkspaceId } from '@/hooks'
 import { useCreateChannel } from '../api/use-create-channel'
 import { useCreateChannelModal } from '../store/use-create-channel-modal'
 

@@ -64,9 +64,9 @@ export const getById = query({
 			return null
 		}
 
-		const member = await getMember(ctx, args.id, userId)
+		const currentMember = await getMember(ctx, args.id, userId)
 
-		if (!member) {
+		if (!currentMember) {
 			return null
 		}
 
@@ -83,11 +83,11 @@ export const getInfoById = query({
 			return null
 		}
 
-		const member = await getMember(ctx, args.id, userId)
+		const currentMember = await getMember(ctx, args.id, userId)
 
 		const workspace = await ctx.db.get(args.id)
 
-		return { name: workspace?.name, isMember: !!member }
+		return { name: workspace?.name, isMember: !!currentMember }
 	},
 })
 
@@ -100,9 +100,9 @@ export const update = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await getMember(ctx, args.id, userId)
+		const currentMember = await getMember(ctx, args.id, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember || currentMember.role !== 'owner') {
 			throw new ConvexError("You don't have permission to update this workspace")
 		}
 
@@ -121,9 +121,9 @@ export const remove = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await getMember(ctx, args.id, userId)
+		const currentMember = await getMember(ctx, args.id, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember || currentMember.role !== 'owner') {
 			throw new ConvexError("You don't have permission to remove this workspace")
 		}
 
@@ -163,9 +163,9 @@ export const join = mutation({
 			throw new ConvexError('Invalid join code')
 		}
 
-		const member = await getMember(ctx, workspace._id, userId)
+		const currentMember = await getMember(ctx, workspace._id, userId)
 
-		if (member) {
+		if (currentMember) {
 			throw new ConvexError('Already a member of this workspace')
 		}
 
@@ -184,9 +184,9 @@ export const newJoinCode = mutation({
 			throw new ConvexError('Unauthorized')
 		}
 
-		const member = await getMember(ctx, args.workspaceId, userId)
+		const currentMember = await getMember(ctx, args.workspaceId, userId)
 
-		if (!member || member.role !== 'owner') {
+		if (!currentMember || currentMember.role !== 'owner') {
 			throw new ConvexError("You don't have permission to join this workspace")
 		}
 

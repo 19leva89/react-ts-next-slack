@@ -16,9 +16,7 @@ import {
 	DialogTrigger,
 	Input,
 } from '@/components/ui'
-import { useConfirm } from '@/hooks/use-confirm'
-import { useChannelId } from '@/hooks/use-channel-id'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useChannelId, useConfirm, useWorkspaceId } from '@/hooks'
 import { useCurrentMember } from '@/features/members/api/use-current-member'
 import { useRemoveChannel } from '@/features/channels/api/use-remove-channel'
 import { useUpdateChannel } from '@/features/channels/api/use-update-channel'

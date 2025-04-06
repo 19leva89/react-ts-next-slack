@@ -9,7 +9,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui'
-import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useWorkspaceId } from '@/hooks'
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'
 import { useGetWorkspaces } from '@/features/workspaces/api/use-get-workspaces'
 import { useCreateWorkspaceModal } from '@/features/workspaces/store/use-create-workspace-modal'
