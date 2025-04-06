@@ -6,10 +6,10 @@ import { cn, formatFullTime } from '@/lib'
 import { useConfirm, usePanel } from '@/hooks'
 import { Doc, Id } from '../../../convex/_generated/dataModel'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
-import { Hint, Reactions, Thumbnail, Toolbar } from '@/components/shared'
 import { useRemoveMessage } from '@/features/messages/api/use-remove-message'
 import { useUpdateMessage } from '@/features/messages/api/use-update-message'
 import { useToggleReaction } from '@/features/reactions/api/use-toggle-reaction'
+import { Hint, Reactions, ThreadBar, Thumbnail, Toolbar } from '@/components/shared'
 
 const Editor = dynamic(() => import('@/components/shared/editor'), { ssr: false })
 const Renderer = dynamic(() => import('@/components/shared/renderer'), { ssr: false })
@@ -31,6 +31,7 @@ interface Props {
 	hideThreadButton?: boolean
 	threadCount?: number
 	threadImage?: string
+	threadName?: string
 	threadTimestamp?: number
 }
 
@@ -51,6 +52,7 @@ export const Message = ({
 	hideThreadButton,
 	threadCount,
 	threadImage,
+	threadName,
 	threadTimestamp,
 }: Props) => {
 	const [ConfirmDialog, confirm] = useConfirm(
@@ -144,6 +146,14 @@ export const Message = ({
 								{updatedAt ? <span className="text-xs text-muted-foreground">(edited)</span> : null}
 
 								<Reactions reactions={reactions} onChange={handleReaction} />
+
+								<ThreadBar
+									count={threadCount}
+									image={threadImage}
+									name={threadName}
+									timestamp={threadTimestamp}
+									onClick={() => onOpenMessage(id)}
+								/>
 							</div>
 						)}
 					</div>
@@ -219,6 +229,14 @@ export const Message = ({
 							{updatedAt ? <span className="text-xs text-muted-foreground">(edited)</span> : null}
 
 							<Reactions reactions={reactions} onChange={handleReaction} />
+
+							<ThreadBar
+								count={threadCount}
+								image={threadImage}
+								name={threadName}
+								timestamp={threadTimestamp}
+								onClick={() => onOpenMessage(id)}
+							/>
 						</div>
 					)}
 				</div>
