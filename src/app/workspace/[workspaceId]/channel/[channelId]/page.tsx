@@ -12,13 +12,13 @@ const ChannelIdPage = () => {
 	const channelId = useChannelId()
 
 	const { results, status, loadMore } = useGetMessages({ channelId })
-	const { data: channel, isLoading: channelLoading } = useGetChannel({ id: channelId })
+	const { data: channel, isLoading: loadingChannel } = useGetChannel({ id: channelId })
 
 	const canLoadMore = status === 'CanLoadMore'
 	const isLoadingMore = status === 'LoadingMore'
 	const isLoadingFirstPage = status === 'LoadingFirstPage'
 
-	if (channelLoading || isLoadingFirstPage) {
+	if (loadingChannel || isLoadingFirstPage) {
 		return (
 			<div className="flex flex-1 items-center justify-center h-full">
 				<LoaderIcon size={20} className="text-muted-foreground animate-spin" />

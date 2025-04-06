@@ -26,12 +26,12 @@ export const WorkspaceSidebar = () => {
 
 	const [_open, setOpen] = useCreateChannelModal()
 
-	const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId })
-	const { data: members, isLoading: membersLoading } = useGetMembers({ workspaceId })
-	const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId })
-	const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
+	const { data: member, isLoading: loadingMember } = useCurrentMember({ workspaceId })
+	const { data: members, isLoading: loadingMembers } = useGetMembers({ workspaceId })
+	const { data: channels, isLoading: loadingChannels } = useGetChannels({ workspaceId })
+	const { data: workspace, isLoading: loadingWorkspace } = useGetWorkspace({ id: workspaceId })
 
-	if (memberLoading || workspaceLoading) {
+	if (loadingMember || loadingWorkspace) {
 		return (
 			<div className="flex flex-col items-center justify-center h-full bg-[#5e2c5f]">
 				<LoaderIcon size={20} className="text-white animate-spin" />

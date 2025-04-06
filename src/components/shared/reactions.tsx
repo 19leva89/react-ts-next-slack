@@ -14,7 +14,7 @@ interface Props {
 export const Reactions = ({ reactions, onChange }: Props) => {
 	const workspaceId = useWorkspaceId()
 
-	const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId })
+	const { data: member, isLoading: loadingMember } = useCurrentMember({ workspaceId })
 
 	const memberId = member?._id
 

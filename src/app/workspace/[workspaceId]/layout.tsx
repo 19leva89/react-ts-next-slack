@@ -6,13 +6,14 @@ import { PropsWithChildren } from 'react'
 import { usePanel } from '@/hooks'
 import { Id } from '../../../../convex/_generated/dataModel'
 import { Thread } from '@/features/messages/components/thread'
+import { Profile } from '@/features/members/components/profile'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui'
 import { Sidebar, Toolbar, WorkspaceSidebar } from '@/app/workspace/[workspaceId]/_components'
 
 const WorkspaceIdLayout = ({ children }: PropsWithChildren) => {
-	const { parentMessageId, onClose } = usePanel()
+	const { parentMessageId, profileMemberId, onClose } = usePanel()
 
-	const showPanel = !!parentMessageId
+	const showPanel = !!parentMessageId || !!profileMemberId
 
 	return (
 		<div className="h-full">
@@ -37,6 +38,8 @@ const WorkspaceIdLayout = ({ children }: PropsWithChildren) => {
 							<ResizablePanel minSize={20} defaultSize={29}>
 								{parentMessageId ? (
 									<Thread messageId={parentMessageId as Id<'messages'>} onClose={onClose} />
+								) : profileMemberId ? (
+									<Profile memberId={profileMemberId as Id<'members'>} onClose={onClose} />
 								) : (
 									<div className="flex items-center justify-center h-full">
 										<LoaderIcon size={20} className="text-muted-foreground animate-spin" />

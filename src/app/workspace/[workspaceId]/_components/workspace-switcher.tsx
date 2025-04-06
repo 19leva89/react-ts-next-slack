@@ -20,8 +20,8 @@ export const WorkspaceSwitcher = () => {
 
 	const [_open, setOpen] = useCreateWorkspaceModal()
 
-	const { data: workspaces, isLoading: workspacesLoading } = useGetWorkspaces()
-	const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
+	const { data: workspaces, isLoading: loadingWorkspaces } = useGetWorkspaces()
+	const { data: workspace, isLoading: loadingWorkspace } = useGetWorkspace({ id: workspaceId })
 
 	const filteredWorkspaces = workspaces?.filter((workspace) => workspace._id !== workspaceId)
 
@@ -29,7 +29,7 @@ export const WorkspaceSwitcher = () => {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					loading={workspaceLoading}
+					loading={loadingWorkspace}
 					className="relative size-9 overflow-hidden bg-[#ababad] hover:bg-[#ababad]/80 text-slate-800 font-semibold text-xl transition-colors ease-in-out duration-300"
 				>
 					{workspace?.name.charAt(0).toUpperCase()}

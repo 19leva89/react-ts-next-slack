@@ -15,13 +15,13 @@ export const Conversation = ({ id }: Props) => {
 	const memberId = useMemberId()
 
 	const { results, status, loadMore } = useGetMessages({ conversationId: id })
-	const { data: member, isLoading: memberLoading } = useGetMember({ id: memberId })
+	const { data: member, isLoading: loadingMember } = useGetMember({ id: memberId })
 
 	const canLoadMore = status === 'CanLoadMore'
 	const isLoadingMore = status === 'LoadingMore'
 	const isLoadingFirstPage = status === 'LoadingFirstPage'
 
-	if (memberLoading || isLoadingFirstPage)
+	if (loadingMember || isLoadingFirstPage)
 		return (
 			<div className="flex items-center justify-center h-full">
 				<LoaderIcon size={24} className="animate-spin text-muted-foreground" />

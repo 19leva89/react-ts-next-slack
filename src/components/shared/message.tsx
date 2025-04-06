@@ -60,12 +60,12 @@ export const Message = ({
 		'Are you sure you want to delete this message? This cannot be undone!',
 	)
 
-	const { parentMessageId, onOpenMessage, onClose } = usePanel()
+	const { parentMessageId, onOpenMessage, onOpenProfile, onClose } = usePanel()
 	const { mutate: updateMessage, isPending: isUpdatingMessage } = useUpdateMessage()
 	const { mutate: removeMessage, isPending: isRemovingMessage } = useRemoveMessage()
 	const { mutate: toggleReaction, isPending: isTogglingReaction } = useToggleReaction()
 
-	const isPending = isUpdatingMessage
+	const isPending = isUpdatingMessage || isRemovingMessage || isTogglingReaction
 	const avatarFallback = authorName.charAt(0).toUpperCase()
 
 	const handleReaction = (value: string) => {
@@ -186,7 +186,7 @@ export const Message = ({
 				)}
 			>
 				<div className="flex items-start gap-2">
-					<button className="flex justify-center w-10">
+					<button onClick={() => onOpenProfile(memberId)} className="flex justify-center w-10 cursor-pointer">
 						<Avatar className="size-8 rounded-md">
 							<AvatarImage src={authorImage} alt={authorName} className="rounded-md" />
 
@@ -209,7 +209,10 @@ export const Message = ({
 					) : (
 						<div className="flex flex-col w-full overflow-hidden">
 							<div className="text-sm">
-								<button onClick={() => {}} className="font-bold text-primary cursor-pointer hover:underline">
+								<button
+									onClick={() => onOpenProfile(memberId)}
+									className="font-bold text-primary cursor-pointer hover:underline"
+								>
 									{authorName}
 								</button>
 

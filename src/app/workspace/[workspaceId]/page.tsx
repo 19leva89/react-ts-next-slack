@@ -16,15 +16,15 @@ const WorkspaceIdPage = () => {
 
 	const [open, setOpen] = useCreateChannelModal()
 
-	const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId })
-	const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId })
-	const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
+	const { data: member, isLoading: loadingMember } = useCurrentMember({ workspaceId })
+	const { data: channels, isLoading: loadingChannels } = useGetChannels({ workspaceId })
+	const { data: workspace, isLoading: loadingWorkspace } = useGetWorkspace({ id: workspaceId })
 
 	const channelId = useMemo(() => channels?.[0]?._id, [channels])
 	const isOwner = useMemo(() => member?.role === 'owner', [member?.role])
 
 	useEffect(() => {
-		if (workspaceLoading || channelsLoading || memberLoading || !member || !workspace) return
+		if (loadingWorkspace || loadingChannels || loadingMember || !member || !workspace) return
 
 		if (channelId) {
 			router.push(`/workspace/${workspaceId}/channel/${channelId}`)
@@ -34,18 +34,18 @@ const WorkspaceIdPage = () => {
 	}, [
 		workspace,
 		workspaceId,
-		workspaceLoading,
+		loadingWorkspace,
 		channelId,
-		channelsLoading,
+		loadingChannels,
 		isOwner,
 		member,
-		memberLoading,
+		loadingMember,
 		open,
 		setOpen,
 		router,
 	])
 
-	if (workspaceLoading || channelsLoading || memberLoading) {
+	if (loadingWorkspace || loadingChannels || loadingMember) {
 		return (
 			<div className="flex flex-1 flex-col items-center justify-center h-full">
 				<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
