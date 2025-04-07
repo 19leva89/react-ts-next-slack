@@ -121,7 +121,16 @@ export const remove = mutation({
 			throw new ConvexError("You don't have permission to remove this channel")
 		}
 
-		// TODO: Remove associated messages
+		const [messages] = await Promise.all([
+			ctx.db
+				.query('messages')
+				.withIndex('by_channel_id', (q) => q.eq('channelId', args.id))
+				.collect(),
+		])
+
+		for (const message of messages) {
+			await ctx.db.delete(message._id)
+		}
 
 		await ctx.db.delete(args.id)
 

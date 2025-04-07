@@ -151,6 +151,7 @@ export const remove = mutation({
 			throw new ConvexError("You can't remove yourself")
 		}
 
+		// cascading delete
 		const [messages, reactions, conversations] = await Promise.all([
 			ctx.db
 				.query('messages')
