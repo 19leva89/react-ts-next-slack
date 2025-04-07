@@ -18,7 +18,7 @@ Styling and UI Frameworks:
 - Tailwind CSS (stylization)
 
 Text Editing:
-- Emoji Mart (emoji picker)
+- Emoji picker react (emoji picker)
 - Quill (text editor)
 
 Utilities and Libraries:
