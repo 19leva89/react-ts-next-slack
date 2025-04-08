@@ -1,5 +1,3 @@
-nuqs
-
 Core Technologies:
 - React 19
 - TypeScript
@@ -7,6 +5,7 @@ Core Technologies:
 
 Data Fetching and State Management:
 - Jotai (state management)
+- NUQS (URL State Synchronization)
 
 Database Management:
 - Convex (reactive NoSQL database)
