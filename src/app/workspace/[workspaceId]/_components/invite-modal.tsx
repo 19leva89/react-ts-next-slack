@@ -9,6 +9,7 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
+	Separator,
 } from '@/components/ui'
 import { useConfirm, useWorkspaceId } from '@/hooks'
 import { useNewJoinCode } from '@/features/workspaces/api/use-new-join-code'
@@ -59,14 +60,16 @@ export const InviteModal = ({ open, setOpen, name, joinCode }: Props) => {
 	return (
 		<>
 			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogContent className="p-0 bg-gray-50 overflow-hidden">
-					<DialogHeader className="p-4 border-b bg-white">
+				<DialogContent className="gap-0 p-0 bg-gray-50 overflow-hidden">
+					<DialogHeader className="p-4 bg-white">
 						<DialogTitle>Invite people to {name}</DialogTitle>
 
 						<DialogDescription>Use the code below to invite people to your workspace</DialogDescription>
 					</DialogHeader>
 
-					<div className="flex flex-col items-center justify-center gap-y-2 py-10">
+					<Separator />
+
+					<div className="flex flex-col items-center justify-center gap-2 px-10 py-16">
 						<p className="text-4xl font-bold tracking-widest uppercase">{joinCode}</p>
 
 						<Button variant="ghost" size="sm" onClick={handleCopy}>

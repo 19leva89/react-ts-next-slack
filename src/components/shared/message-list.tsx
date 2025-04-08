@@ -4,6 +4,7 @@ import { differenceInMinutes, format } from 'date-fns'
 
 import { formatDateLabel } from '@/lib'
 import { useWorkspaceId } from '@/hooks'
+import { Separator } from '@/components/ui'
 import { Id } from '../../../convex/_generated/dataModel'
 import { useCurrentMember } from '@/features/members/api/use-current-member'
 import { ChannelHero, ConversationHero, Message } from '@/components/shared'
@@ -61,7 +62,7 @@ export const MessageList = ({
 			{Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
 				<div key={dateKey}>
 					<div className="relative my-2 text-center">
-						<hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
+						<Separator className="absolute top-1/2 left-0 right-0" />
 
 						<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
 							{formatDateLabel(dateKey)}
@@ -127,7 +128,7 @@ export const MessageList = ({
 
 			{isLoadingMore && (
 				<div className="relative my-2 text-center">
-					<hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
+					<Separator className="absolute top-1/2 left-0 right-0" />
 
 					<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
 						<LoaderIcon size={16} className="animate-spin" />

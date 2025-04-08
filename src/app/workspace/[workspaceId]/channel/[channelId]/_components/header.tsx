@@ -15,6 +15,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 	Input,
+	Separator,
 } from '@/components/ui'
 import { useChannelId, useConfirm, useWorkspaceId } from '@/hooks'
 import { useCurrentMember } from '@/features/members/api/use-current-member'
@@ -87,88 +88,94 @@ export const Header = ({ title }: Props) => {
 	}
 
 	return (
-		<div className="flex items-center h-1/18 px-4 border-b bg-white overflow-hidden">
-			<Dialog>
-				<DialogTrigger asChild>
-					<Button variant="ghost" size="sm" className="w-auto px-2 text-lg font-semibold overflow-auto">
-						<span className="truncate"># {title}</span>
+		<>
+			<div className="flex items-center h-1/18 px-4 bg-white overflow-hidden">
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button variant="ghost" size="sm" className="w-auto px-2 text-lg font-semibold overflow-auto">
+							<span className="truncate"># {title}</span>
 
-						<FaChevronDown size={10} className="size-2.5 ml-2" />
-					</Button>
-				</DialogTrigger>
+							<FaChevronDown size={10} className="size-2.5 ml-2" />
+						</Button>
+					</DialogTrigger>
 
-				<DialogContent aria-describedby={undefined} className="p-0 bg-gray-50 overflow-hidden">
-					<DialogHeader className="p-4 border-b bg-white">
-						<DialogTitle># {title}</DialogTitle>
+					<DialogContent aria-describedby={undefined} className="gap-0 p-0 bg-gray-50 overflow-hidden">
+						<DialogHeader className="p-4 bg-white">
+							<DialogTitle># {title}</DialogTitle>
 
-						<DialogDescription className="hidden" />
-					</DialogHeader>
+							<DialogDescription className="hidden" />
+						</DialogHeader>
 
-					<div className="flex flex-col gap-y-2 px-4 pb-4">
-						<Dialog open={editOpen} onOpenChange={handleEditOpen}>
-							<DialogTrigger asChild>
-								<div className="px-5 py-4 border rounded-lg bg-white cursor-pointer hover:bg-gray-50">
-									<div className="flex items-center justify-between">
-										<p className="text-sm font-semibold">Channel name</p>
+						<Separator />
 
-										{member?.role === 'owner' && (
-											<p className="text-sm text-[#1264a3] font-semibold hover:underline">Edit</p>
-										)}
+						<div className="flex flex-col gap-2 p-4">
+							<Dialog open={editOpen} onOpenChange={handleEditOpen}>
+								<DialogTrigger asChild>
+									<div className="px-5 py-4 border rounded-lg bg-white cursor-pointer hover:bg-gray-50">
+										<div className="flex items-center justify-between">
+											<p className="text-sm font-semibold">Channel name</p>
+
+											{member?.role === 'owner' && (
+												<p className="text-sm text-[#1264a3] font-semibold hover:underline">Edit</p>
+											)}
+										</div>
+
+										<p className="text-sm"># {title}</p>
 									</div>
+								</DialogTrigger>
 
-									<p className="text-sm"># {title}</p>
-								</div>
-							</DialogTrigger>
+								<DialogContent aria-describedby={undefined}>
+									<DialogHeader>
+										<DialogTitle>Rename this channel</DialogTitle>
 
-							<DialogContent aria-describedby={undefined}>
-								<DialogHeader>
-									<DialogTitle>Rename this channel</DialogTitle>
+										<DialogDescription className="hidden" />
+									</DialogHeader>
 
-									<DialogDescription className="hidden" />
-								</DialogHeader>
+									<form onSubmit={handleEdit} className="space-y-4">
+										<Input
+											value={value}
+											disabled={isUpdatingChannel}
+											onChange={handleChange}
+											required
+											autoFocus
+											minLength={3}
+											maxLength={80}
+											placeholder="Channel name e.g. 'plan-budget'"
+										/>
 
-								<form onSubmit={handleEdit} className="space-y-4">
-									<Input
-										value={value}
-										disabled={isUpdatingChannel}
-										onChange={handleChange}
-										required
-										autoFocus
-										minLength={3}
-										maxLength={80}
-										placeholder="Channel name e.g. 'plan-budget'"
-									/>
+										<DialogFooter>
+											<DialogClose asChild>
+												<Button variant="outline" disabled={isUpdatingChannel}>
+													Cancel
+												</Button>
+											</DialogClose>
 
-									<DialogFooter>
-										<DialogClose asChild>
-											<Button variant="outline" disabled={isUpdatingChannel}>
-												Cancel
+											<Button loading={isUpdatingChannel} disabled={isUpdatingChannel}>
+												Save
 											</Button>
-										</DialogClose>
+										</DialogFooter>
+									</form>
+								</DialogContent>
+							</Dialog>
 
-										<Button loading={isUpdatingChannel} disabled={isUpdatingChannel}>
-											Save
-										</Button>
-									</DialogFooter>
-								</form>
-							</DialogContent>
-						</Dialog>
+							{member?.role === 'owner' && (
+								<button
+									disabled={isRemovingChannel}
+									onClick={handleRemove}
+									className="flex items-center gap-x-2 px-5 py-4 border rounded-lg bg-white text-rose-600 cursor-pointer hover:bg-gray-50"
+								>
+									<TrashIcon size={16} />
+									<p className="text-sm font-semibold">Delete channel</p>
+								</button>
+							)}
+						</div>
+					</DialogContent>
+				</Dialog>
 
-						{member?.role === 'owner' && (
-							<button
-								disabled={isRemovingChannel}
-								onClick={handleRemove}
-								className="flex items-center gap-x-2 px-5 py-4 border rounded-lg bg-white text-rose-600 cursor-pointer hover:bg-gray-50"
-							>
-								<TrashIcon size={16} />
-								<p className="text-sm font-semibold">Delete channel</p>
-							</button>
-						)}
-					</div>
-				</DialogContent>
-			</Dialog>
+				<ConfirmDialog />
+			</div>
 
-			<ConfirmDialog />
-		</div>
+			<Separator />
+		</>
 	)
 }

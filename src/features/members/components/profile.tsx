@@ -114,13 +114,15 @@ export const Profile = ({ memberId, onClose }: Props) => {
 	if (loadingMember || loadingCurrentMember) {
 		return (
 			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/17 px-4 border-b">
+				<div className="flex items-center justify-between h-1/17 px-4">
 					<p className="text-lg font-bold">Profile</p>
 
 					<Button variant="ghost" size="iconSm" onClick={onClose}>
 						<XIcon size={20} className="stroke-[1.5]" />
 					</Button>
 				</div>
+
+				<Separator />
 
 				<div className="flex items-center justify-center h-full">
 					<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
@@ -132,13 +134,15 @@ export const Profile = ({ memberId, onClose }: Props) => {
 	if (!member) {
 		return (
 			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/17 px-4 border-b">
+				<div className="flex items-center justify-between h-1/17 px-4">
 					<p className="text-lg font-bold">Profile</p>
 
 					<Button variant="ghost" size="iconSm" onClick={onClose}>
 						<XIcon size={20} className="stroke-[1.5]" />
 					</Button>
 				</div>
+
+				<Separator />
 
 				<div className="flex flex-col items-center justify-center gap-y-2 h-full">
 					<AlertTriangleIcon size={20} className="text-muted-foreground" />
@@ -152,13 +156,15 @@ export const Profile = ({ memberId, onClose }: Props) => {
 	return (
 		<>
 			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/18 px-4 border-b">
+				<div className="flex items-center justify-between h-1/18 px-4">
 					<p className="text-lg font-bold">Profile</p>
 
 					<Button variant="ghost" size="iconSm" onClick={onClose}>
 						<XIcon size={20} className="stroke-[1.5]" />
 					</Button>
 				</div>
+
+				<Separator />
 
 				<div className="flex items-center justify-center p-4">
 					<Avatar className="size-full max-w-64 max-h-64 rounded-md mr-2">

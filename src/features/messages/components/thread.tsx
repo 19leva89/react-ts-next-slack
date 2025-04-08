@@ -7,8 +7,8 @@ import { differenceInMinutes, format } from 'date-fns'
 import { AlertTriangleIcon, LoaderIcon, XIcon } from 'lucide-react'
 
 import { formatDateLabel } from '@/lib'
-import { Button } from '@/components/ui'
 import { Message } from '@/components/shared'
+import { Button, Separator } from '@/components/ui'
 import { useChannelId, useWorkspaceId } from '@/hooks'
 import { Id } from '../../../../convex/_generated/dataModel'
 import { useGetMessage } from '@/features/messages/api/use-get-message'
@@ -123,13 +123,15 @@ export const Thread = ({ messageId, onClose }: Props) => {
 	if (loadingMessage || isLoadingFirstPage) {
 		return (
 			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/17 px-4 border-b">
+				<div className="flex items-center justify-between h-1/17 px-4">
 					<p className="text-lg font-bold">Thread</p>
 
 					<Button variant="ghost" size="iconSm" onClick={onClose}>
 						<XIcon size={20} className="stroke-[1.5]" />
 					</Button>
 				</div>
+
+				<Separator />
 
 				<div className="flex items-center justify-center h-full">
 					<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
@@ -141,13 +143,15 @@ export const Thread = ({ messageId, onClose }: Props) => {
 	if (!message) {
 		return (
 			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/17 px-4 border-b">
+				<div className="flex items-center justify-between h-1/17 px-4">
 					<p className="text-lg font-bold">Thread</p>
 
 					<Button variant="ghost" size="iconSm" onClick={onClose}>
 						<XIcon size={20} className="stroke-[1.5]" />
 					</Button>
 				</div>
+
+				<Separator />
 
 				<div className="flex flex-col items-center justify-center gap-y-2 h-full">
 					<AlertTriangleIcon size={20} className="text-muted-foreground" />
@@ -160,7 +164,7 @@ export const Thread = ({ messageId, onClose }: Props) => {
 
 	return (
 		<div className="flex flex-col h-full">
-			<div className="flex items-center justify-between h-1/18 px-4 border-b">
+			<div className="flex items-center justify-between h-1/18 px-4">
 				<p className="text-lg font-bold">Thread</p>
 
 				<Button variant="ghost" size="iconSm" onClick={onClose}>
@@ -168,11 +172,13 @@ export const Thread = ({ messageId, onClose }: Props) => {
 				</Button>
 			</div>
 
+			<Separator />
+
 			<div className="flex flex-1 flex-col-reverse pb-4 overflow-y-auto messages-scrollbar">
 				{Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
 					<div key={dateKey}>
 						<div className="relative my-2 text-center">
-							<hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
+							<Separator className="absolute top-1/2 left-0 right-0" />
 
 							<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
 								{formatDateLabel(dateKey)}
@@ -238,7 +244,7 @@ export const Thread = ({ messageId, onClose }: Props) => {
 
 				{isLoadingMore && (
 					<div className="relative my-2 text-center">
-						<hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
+						<Separator className="absolute top-1/2 left-0 right-0" />
 
 						<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
 							<LoaderIcon size={16} className="animate-spin" />

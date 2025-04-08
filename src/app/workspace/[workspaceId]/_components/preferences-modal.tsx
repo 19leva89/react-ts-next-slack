@@ -14,6 +14,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 	Input,
+	Separator,
 } from '@/components/ui'
 import { useConfirm, useWorkspaceId } from '@/hooks'
 import { useUpdateWorkspace } from '@/features/workspaces/api/use-update-workspace'
@@ -75,14 +76,16 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: Props) => {
 	return (
 		<>
 			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogContent aria-describedby={undefined} className="p-0 bg-gray-50 overflow-hidden">
-					<DialogHeader className="p-4 border-b bg-white">
+				<DialogContent aria-describedby={undefined} className="gap-0 p-0 bg-gray-50 overflow-hidden">
+					<DialogHeader className="p-4 bg-white">
 						<DialogTitle>{value}</DialogTitle>
 
 						<DialogDescription className="hidden" />
 					</DialogHeader>
 
-					<div className="flex flex-col gap-y-2 px-4 pb-4">
+					<Separator />
+
+					<div className="flex flex-col gap-2 p-4">
 						<Dialog open={editOpen} onOpenChange={setEditOpen}>
 							<DialogTrigger asChild>
 								<div className="px-5 py-4 border rounded-lg bg-white cursor-pointer hover:bg-gray-50">
