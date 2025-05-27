@@ -34,7 +34,7 @@ export const WorkspaceSection = ({ children, label, hint, onNew }: Props) => {
 				<Button
 					variant="transparent"
 					size="sm"
-					className="justify-start h-[28px] px-1.5 text-sm text-[#f9edffcc] overflow-hidden group"
+					className="justify-start h-7 px-1.5 text-sm text-[#f9edffcc] overflow-hidden group"
 				>
 					<span className="truncate">{label}</span>
 				</Button>

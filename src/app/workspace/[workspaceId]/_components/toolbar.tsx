@@ -30,7 +30,7 @@ export const Toolbar = () => {
 		<nav className="flex items-center justify-between h-10 p-1.5 bg-[#481349]">
 			<div className="flex-1" />
 
-			<div className="min-w-[280px] max-w-[642px] grow-2 shrink">
+			<div className="min-w-70 max-w-[642px] grow-2 shrink">
 				<Button
 					size="sm"
 					onClick={() => setOpen(true)}

@@ -1,3 +1,5 @@
+# This project contains the following technologies
+
 Core Technologies:
 - React 19
 - TypeScript
@@ -25,13 +27,15 @@ Utilities and Libraries:
 - React Use (custom React Hooks)
 
 
-To run the client and server via concurrently:
-npm run all
-npm run lint (loading ESLint checker)
+# To run the client and server via concurrently:
+`npm i` (install dependencies)
+`npm run all`
+`npm run lint` (loading ESLint checker)
+`npm run knip`
 
-npx convex dev
-npx @convex-dev/auth (sets up your project for authenticating via the library)
-npx convex env set AUTH_GITHUB_ID <yourGithubClientId>
-npx convex env set AUTH_GITHUB_SECRET <yourGithubSecret>
-npx convex env set AUTH_GOOGLE_ID <yourGoogleClientId>
-npx convex env set AUTH_GOOGLE_SECRET <yourGoogleSecret>
+`npx convex dev`
+`npx @convex-dev/auth` (sets up your project for authenticating via the library)
+`npx convex env set AUTH_GITHUB_ID <yourGithubClientId>`
+`npx convex env set AUTH_GITHUB_SECRET <yourGithubSecret>`
+`npx convex env set AUTH_GOOGLE_ID <yourGoogleClientId>`
+`npx convex env set AUTH_GOOGLE_SECRET <yourGoogleSecret>`
