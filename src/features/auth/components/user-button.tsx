@@ -19,7 +19,7 @@ export const UserButton = () => {
 	const { data, isLoading } = useCurrentUser()
 
 	if (isLoading) {
-		return <LoaderIcon size={16} className="animate-spin text-muted-foreground" />
+		return <LoaderIcon size={16} className='animate-spin text-muted-foreground' />
 	}
 
 	if (!data) {
@@ -32,17 +32,17 @@ export const UserButton = () => {
 
 	return (
 		<DropdownMenu modal={false}>
-			<DropdownMenuTrigger className="outline-hidden relative">
-				<Avatar className="size-10 rounded-md cursor-pointer hover:opacity-75 transition ease-in-out duration-300">
-					<AvatarImage alt={name} src={image} className="rounded-md" />
+			<DropdownMenuTrigger className='relative outline-hidden'>
+				<Avatar className='size-10 cursor-pointer rounded-md transition duration-300 ease-in-out hover:opacity-75'>
+					<AvatarImage alt={name} src={image} className='rounded-md' />
 
-					<AvatarFallback className="rounded-md bg-sky-500 text-white">{avatarFallback}</AvatarFallback>
+					<AvatarFallback className='rounded-md bg-sky-500 text-white'>{avatarFallback}</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent align="center" side="right" className="w-60">
-				<DropdownMenuItem onClick={() => signOut()} className="h-10">
-					<LogOutIcon size={16} className="mr-2" />
+			<DropdownMenuContent align='center' side='right' className='w-60'>
+				<DropdownMenuItem onClick={() => signOut()} className='h-10'>
+					<LogOutIcon size={16} className='mr-2' />
 					Log out
 				</DropdownMenuItem>
 			</DropdownMenuContent>

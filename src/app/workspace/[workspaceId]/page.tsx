@@ -47,27 +47,27 @@ const WorkspaceIdPage = () => {
 
 	if (loadingWorkspace || loadingChannels || loadingMember) {
 		return (
-			<div className="flex flex-1 flex-col items-center justify-center h-full">
-				<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
+			<div className='flex h-full flex-1 flex-col items-center justify-center'>
+				<LoaderIcon size={20} className='animate-spin text-muted-foreground' />
 			</div>
 		)
 	}
 
 	if (!workspace || !member) {
 		return (
-			<div className="flex flex-1 flex-col items-center justify-center gap-2 h-full">
-				<TriangleAlertIcon size={20} className="text-muted-foreground" />
+			<div className='flex h-full flex-1 flex-col items-center justify-center gap-2'>
+				<TriangleAlertIcon size={20} className='text-muted-foreground' />
 
-				<span className="text-sm text-muted-foreground">Workspace not found</span>
+				<span className='text-sm text-muted-foreground'>Workspace not found</span>
 			</div>
 		)
 	}
 
 	return (
-		<div className="flex flex-1 flex-col items-center justify-center gap-2 h-full">
-			<TriangleAlertIcon size={20} className="text-muted-foreground" />
+		<div className='flex h-full flex-1 flex-col items-center justify-center gap-2'>
+			<TriangleAlertIcon size={20} className='text-muted-foreground' />
 
-			<span className="text-sm text-muted-foreground">Channel not found</span>
+			<span className='text-sm text-muted-foreground'>Channel not found</span>
 		</div>
 	)
 }

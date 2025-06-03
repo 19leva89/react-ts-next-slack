@@ -18,34 +18,34 @@ export const WorkspaceSection = ({ children, label, hint, onNew }: Props) => {
 	const [on, toggle] = useToggle(true)
 
 	return (
-		<div className="flex flex-col gap-0.5 px-2.5 mt-2">
-			<div className="flex items-center px-1.5 group">
+		<div className='mt-2 flex flex-col gap-0.5 px-2.5'>
+			<div className='group flex items-center px-1.5'>
 				<Button
-					variant="transparent"
+					variant='transparent'
 					onClick={toggle}
-					className="size-6 p-0.5 text-sm text-[#f9edffcc] shrink-0"
+					className='size-6 shrink-0 p-0.5 text-sm text-[#f9edffcc]'
 				>
 					<FaCaretRight
 						size={16}
-						className={cn('transition-transform ease-in-out duration-300', on && 'rotate-90')}
+						className={cn('transition-transform duration-300 ease-in-out', on && 'rotate-90')}
 					/>
 				</Button>
 
 				<Button
-					variant="transparent"
-					size="sm"
-					className="justify-start h-7 px-1.5 text-sm text-[#f9edffcc] overflow-hidden group"
+					variant='transparent'
+					size='sm'
+					className='group h-7 justify-start overflow-hidden px-1.5 text-sm text-[#f9edffcc]'
 				>
-					<span className="truncate">{label}</span>
+					<span className='truncate'>{label}</span>
 				</Button>
 
 				{onNew && (
-					<Hint label={hint} side="top">
+					<Hint label={hint} side='top'>
 						<Button
-							variant="transparent"
-							size="iconSm"
+							variant='transparent'
+							size='iconSm'
 							onClick={onNew}
-							className="size-6 ml-auto p-0.5 text-sm text-[#f9edffcc] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-300"
+							className='ml-auto size-6 shrink-0 p-0.5 text-sm text-[#f9edffcc] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'
 						>
 							<PlusIcon size={20} />
 						</Button>

@@ -34,11 +34,11 @@ export const SidebarItem = ({ id, label, icon: Icon, variant }: Props) => {
 	const workspaceId = useWorkspaceId()
 
 	return (
-		<Button variant="transparent" size="sm" className={cn(sidebarItemVariants({ variant }))} asChild>
+		<Button variant='transparent' size='sm' className={cn(sidebarItemVariants({ variant }))} asChild>
 			<Link href={`/workspace/${workspaceId}/channel/${id}`}>
-				<Icon size={14} className="mr-1 shrink-0" />
+				<Icon size={14} className='mr-1 shrink-0' />
 
-				<span className="text-sm truncate">{label}</span>
+				<span className='truncate text-sm'>{label}</span>
 			</Link>
 		</Button>
 	)

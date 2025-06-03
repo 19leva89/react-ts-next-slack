@@ -19,31 +19,31 @@ export const ThreadBar = ({ count, image, name = 'Member', timestamp, onClick }:
 	return (
 		<button
 			onClick={onClick}
-			className="flex items-center justify-start p-1 max-w-90 border border-transparent rounded-md cursor-pointer hover:bg-white hover:border-border group/thread-bar transition"
+			className='group/thread-bar flex max-w-90 cursor-pointer items-center justify-start rounded-md border border-transparent p-1 transition hover:border-border hover:bg-white'
 		>
-			<div className="flex items-center gap-2 overflow-hidden">
-				<Avatar className="size-6 rounded-md shrink-0">
-					<AvatarImage src={image} alt={name} className="rounded-md" />
+			<div className='flex items-center gap-2 overflow-hidden'>
+				<Avatar className='size-6 shrink-0 rounded-md'>
+					<AvatarImage src={image} alt={name} className='rounded-md' />
 
-					<AvatarFallback className="rounded-md bg-sky-500 text-white text-xs">
+					<AvatarFallback className='rounded-md bg-sky-500 text-xs text-white'>
 						{avatarFallback}
 					</AvatarFallback>
 				</Avatar>
 
-				<span className="text-xs text-sky-700 font-bold truncate hover:underline">
+				<span className='truncate text-xs font-bold text-sky-700 hover:underline'>
 					{count} {count > 1 ? 'replies' : 'reply'}
 				</span>
 
-				<span className="text-xs text-muted-foreground truncate group-hover/thread-bar:hidden block">
+				<span className='block truncate text-xs text-muted-foreground group-hover/thread-bar:hidden'>
 					Last reply {formatDistanceToNow(timestamp, { addSuffix: true })}
 				</span>
 
-				<span className="text-xs text-muted-foreground truncate group-hover/thread-bar:block hidden">
+				<span className='hidden truncate text-xs text-muted-foreground group-hover/thread-bar:block'>
 					View thread
 				</span>
 			</div>
 
-			<ChevronRightIcon className="ml-auto size-4 text-muted-foreground opacity-0 group-hover/thread-bar:opacity-100 transition shrink-0" />
+			<ChevronRightIcon className='ml-auto size-4 shrink-0 text-muted-foreground opacity-0 transition group-hover/thread-bar:opacity-100' />
 		</button>
 	)
 }

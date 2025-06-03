@@ -58,13 +58,13 @@ export const MessageList = ({
 	)
 
 	return (
-		<div className="flex flex-1 flex-col-reverse pb-4 overflow-y-auto messages-scrollbar">
+		<div className='messages-scrollbar flex flex-1 flex-col-reverse overflow-y-auto pb-4'>
 			{Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
 				<div key={dateKey}>
-					<div className="relative my-2 text-center">
-						<Separator className="absolute top-1/2 left-0 right-0" />
+					<div className='relative my-2 text-center'>
+						<Separator className='absolute top-1/2 right-0 left-0' />
 
-						<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
+						<span className='relative inline-block rounded-full border border-gray-300 bg-white px-4 py-1 text-xs shadow-sm'>
 							{formatDateLabel(dateKey)}
 						</span>
 					</div>
@@ -123,15 +123,15 @@ export const MessageList = ({
 						return () => observer.disconnect()
 					}
 				}}
-				className="h-1"
+				className='h-1'
 			/>
 
 			{isLoadingMore && (
-				<div className="relative my-2 text-center">
-					<Separator className="absolute top-1/2 left-0 right-0" />
+				<div className='relative my-2 text-center'>
+					<Separator className='absolute top-1/2 right-0 left-0' />
 
-					<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
-						<LoaderIcon size={16} className="animate-spin" />
+					<span className='relative inline-block rounded-full border border-gray-300 bg-white px-4 py-1 text-xs shadow-sm'>
+						<LoaderIcon size={16} className='animate-spin' />
 					</span>
 				</div>
 			)}

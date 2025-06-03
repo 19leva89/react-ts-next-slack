@@ -89,38 +89,38 @@ export const Header = ({ title }: Props) => {
 
 	return (
 		<>
-			<div className="flex items-center h-1/18 px-4 bg-white overflow-hidden">
+			<div className='flex h-1/18 items-center overflow-hidden bg-white px-4'>
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant="ghost" size="sm" className="w-auto px-2 text-lg font-semibold overflow-auto">
-							<span className="truncate"># {title}</span>
+						<Button variant='ghost' size='sm' className='w-auto overflow-auto px-2 text-lg font-semibold'>
+							<span className='truncate'># {title}</span>
 
-							<FaChevronDown size={10} className="size-2.5 ml-2" />
+							<FaChevronDown size={10} className='ml-2 size-2.5' />
 						</Button>
 					</DialogTrigger>
 
-					<DialogContent aria-describedby={undefined} className="gap-0 p-0 bg-gray-50 overflow-hidden">
-						<DialogHeader className="p-4 bg-white">
+					<DialogContent aria-describedby={undefined} className='gap-0 overflow-hidden bg-gray-50 p-0'>
+						<DialogHeader className='bg-white p-4'>
 							<DialogTitle># {title}</DialogTitle>
 
-							<DialogDescription className="hidden" />
+							<DialogDescription className='hidden' />
 						</DialogHeader>
 
 						<Separator />
 
-						<div className="flex flex-col gap-2 p-4">
+						<div className='flex flex-col gap-2 p-4'>
 							<Dialog open={editOpen} onOpenChange={handleEditOpen}>
 								<DialogTrigger asChild>
-									<div className="px-5 py-4 border rounded-lg bg-white cursor-pointer hover:bg-gray-50">
-										<div className="flex items-center justify-between">
-											<p className="text-sm font-semibold">Channel name</p>
+									<div className='cursor-pointer rounded-lg border bg-white px-5 py-4 hover:bg-gray-50'>
+										<div className='flex items-center justify-between'>
+											<p className='text-sm font-semibold'>Channel name</p>
 
 											{member?.role === 'owner' && (
-												<p className="text-sm text-[#1264a3] font-semibold hover:underline">Edit</p>
+												<p className='text-sm font-semibold text-[#1264a3] hover:underline'>Edit</p>
 											)}
 										</div>
 
-										<p className="text-sm"># {title}</p>
+										<p className='text-sm'># {title}</p>
 									</div>
 								</DialogTrigger>
 
@@ -128,10 +128,10 @@ export const Header = ({ title }: Props) => {
 									<DialogHeader>
 										<DialogTitle>Rename this channel</DialogTitle>
 
-										<DialogDescription className="hidden" />
+										<DialogDescription className='hidden' />
 									</DialogHeader>
 
-									<form onSubmit={handleEdit} className="space-y-4">
+									<form onSubmit={handleEdit} className='space-y-4'>
 										<Input
 											value={value}
 											disabled={isUpdatingChannel}
@@ -145,7 +145,7 @@ export const Header = ({ title }: Props) => {
 
 										<DialogFooter>
 											<DialogClose asChild>
-												<Button variant="outline" disabled={isUpdatingChannel}>
+												<Button variant='outline' disabled={isUpdatingChannel}>
 													Cancel
 												</Button>
 											</DialogClose>
@@ -162,10 +162,10 @@ export const Header = ({ title }: Props) => {
 								<button
 									disabled={isRemovingChannel}
 									onClick={handleRemove}
-									className="flex items-center gap-x-2 px-5 py-4 border rounded-lg bg-white text-rose-600 cursor-pointer hover:bg-gray-50"
+									className='flex cursor-pointer items-center gap-x-2 rounded-lg border bg-white px-5 py-4 text-rose-600 hover:bg-gray-50'
 								>
 									<TrashIcon size={16} />
-									<p className="text-sm font-semibold">Delete channel</p>
+									<p className='text-sm font-semibold'>Delete channel</p>
 								</button>
 							)}
 						</div>

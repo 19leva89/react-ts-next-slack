@@ -76,26 +76,26 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: Props) => {
 	return (
 		<>
 			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogContent aria-describedby={undefined} className="gap-0 p-0 bg-gray-50 overflow-hidden">
-					<DialogHeader className="p-4 bg-white">
+				<DialogContent aria-describedby={undefined} className='gap-0 overflow-hidden bg-gray-50 p-0'>
+					<DialogHeader className='bg-white p-4'>
 						<DialogTitle>{value}</DialogTitle>
 
-						<DialogDescription className="hidden" />
+						<DialogDescription className='hidden' />
 					</DialogHeader>
 
 					<Separator />
 
-					<div className="flex flex-col gap-2 p-4">
+					<div className='flex flex-col gap-2 p-4'>
 						<Dialog open={editOpen} onOpenChange={setEditOpen}>
 							<DialogTrigger asChild>
-								<div className="px-5 py-4 border rounded-lg bg-white cursor-pointer hover:bg-gray-50">
-									<div className="flex items-center justify-between">
-										<p className="text-sm font-semibold">Workspace name</p>
+								<div className='cursor-pointer rounded-lg border bg-white px-5 py-4 hover:bg-gray-50'>
+									<div className='flex items-center justify-between'>
+										<p className='text-sm font-semibold'>Workspace name</p>
 
-										<p className="text-sm text-[#1264a3] font-semibold hover:underline">Edit</p>
+										<p className='text-sm font-semibold text-[#1264a3] hover:underline'>Edit</p>
 									</div>
 
-									<p className="text-sm">{value}</p>
+									<p className='text-sm'>{value}</p>
 								</div>
 							</DialogTrigger>
 
@@ -103,10 +103,10 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: Props) => {
 								<DialogHeader>
 									<DialogTitle>Rename this workspace</DialogTitle>
 
-									<DialogDescription className="hidden" />
+									<DialogDescription className='hidden' />
 								</DialogHeader>
 
-								<form onSubmit={handleEdit} className="space-y-4">
+								<form onSubmit={handleEdit} className='space-y-4'>
 									<Input
 										value={value}
 										disabled={isUpdatingWorkspace}
@@ -120,7 +120,7 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: Props) => {
 
 									<DialogFooter>
 										<DialogClose asChild>
-											<Button variant="outline" disabled={isUpdatingWorkspace}>
+											<Button variant='outline' disabled={isUpdatingWorkspace}>
 												Cancel
 											</Button>
 										</DialogClose>
@@ -136,10 +136,10 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: Props) => {
 						<button
 							disabled={isRemovingWorkspace}
 							onClick={handleRemove}
-							className="flex items-center gap-x-2 px-5 py-4 border rounded-lg bg-white text-rose-600 cursor-pointer hover:bg-gray-50"
+							className='flex cursor-pointer items-center gap-x-2 rounded-lg border bg-white px-5 py-4 text-rose-600 hover:bg-gray-50'
 						>
 							<TrashIcon size={16} />
-							<p className="text-sm font-semibold">Delete workspace</p>
+							<p className='text-sm font-semibold'>Delete workspace</p>
 						</button>
 					</div>
 				</DialogContent>

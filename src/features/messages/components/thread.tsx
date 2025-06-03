@@ -112,7 +112,7 @@ export const Thread = ({ messageId, onClose }: Props) => {
 			await createMessage(values, { throwOnError: true })
 
 			setEditorKey((prevKey) => prevKey + 1)
-		} catch (error) {
+		} catch {
 			toast.error('Failed to create message')
 		} finally {
 			setIsPending(false)
@@ -122,19 +122,19 @@ export const Thread = ({ messageId, onClose }: Props) => {
 
 	if (loadingMessage || isLoadingFirstPage) {
 		return (
-			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/17 px-4">
-					<p className="text-lg font-bold">Thread</p>
+			<div className='flex h-full flex-col'>
+				<div className='flex h-1/17 items-center justify-between px-4'>
+					<p className='text-lg font-bold'>Thread</p>
 
-					<Button variant="ghost" size="iconSm" onClick={onClose}>
-						<XIcon size={20} className="stroke-[1.5]" />
+					<Button variant='ghost' size='iconSm' onClick={onClose}>
+						<XIcon size={20} className='stroke-[1.5]' />
 					</Button>
 				</div>
 
 				<Separator />
 
-				<div className="flex items-center justify-center h-full">
-					<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
+				<div className='flex h-full items-center justify-center'>
+					<LoaderIcon size={20} className='animate-spin text-muted-foreground' />
 				</div>
 			</div>
 		)
@@ -142,45 +142,45 @@ export const Thread = ({ messageId, onClose }: Props) => {
 
 	if (!message) {
 		return (
-			<div className="flex flex-col h-full">
-				<div className="flex items-center justify-between h-1/17 px-4">
-					<p className="text-lg font-bold">Thread</p>
+			<div className='flex h-full flex-col'>
+				<div className='flex h-1/17 items-center justify-between px-4'>
+					<p className='text-lg font-bold'>Thread</p>
 
-					<Button variant="ghost" size="iconSm" onClick={onClose}>
-						<XIcon size={20} className="stroke-[1.5]" />
+					<Button variant='ghost' size='iconSm' onClick={onClose}>
+						<XIcon size={20} className='stroke-[1.5]' />
 					</Button>
 				</div>
 
 				<Separator />
 
-				<div className="flex flex-col items-center justify-center gap-y-2 h-full">
-					<AlertTriangleIcon size={20} className="text-muted-foreground" />
+				<div className='flex h-full flex-col items-center justify-center gap-y-2'>
+					<AlertTriangleIcon size={20} className='text-muted-foreground' />
 
-					<p className="text-sm text-muted-foreground">Message not found</p>
+					<p className='text-sm text-muted-foreground'>Message not found</p>
 				</div>
 			</div>
 		)
 	}
 
 	return (
-		<div className="flex flex-col h-full">
-			<div className="flex items-center justify-between h-1/18 px-4">
-				<p className="text-lg font-bold">Thread</p>
+		<div className='flex h-full flex-col'>
+			<div className='flex h-1/18 items-center justify-between px-4'>
+				<p className='text-lg font-bold'>Thread</p>
 
-				<Button variant="ghost" size="iconSm" onClick={onClose}>
-					<XIcon size={20} className="stroke-[1.5]" />
+				<Button variant='ghost' size='iconSm' onClick={onClose}>
+					<XIcon size={20} className='stroke-[1.5]' />
 				</Button>
 			</div>
 
 			<Separator />
 
-			<div className="flex flex-1 flex-col-reverse pb-4 overflow-y-auto messages-scrollbar">
+			<div className='messages-scrollbar flex flex-1 flex-col-reverse overflow-y-auto pb-4'>
 				{Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
 					<div key={dateKey}>
-						<div className="relative my-2 text-center">
-							<Separator className="absolute top-1/2 left-0 right-0" />
+						<div className='relative my-2 text-center'>
+							<Separator className='absolute top-1/2 right-0 left-0' />
 
-							<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
+							<span className='relative inline-block rounded-full border border-gray-300 bg-white px-4 py-1 text-xs shadow-sm'>
 								{formatDateLabel(dateKey)}
 							</span>
 						</div>
@@ -239,15 +239,15 @@ export const Thread = ({ messageId, onClose }: Props) => {
 							return () => observer.disconnect()
 						}
 					}}
-					className="h-1"
+					className='h-1'
 				/>
 
 				{isLoadingMore && (
-					<div className="relative my-2 text-center">
-						<Separator className="absolute top-1/2 left-0 right-0" />
+					<div className='relative my-2 text-center'>
+						<Separator className='absolute top-1/2 right-0 left-0' />
 
-						<span className="relative inline-block px-4 py-1 border border-gray-300 rounded-full bg-white text-xs shadow-sm">
-							<LoaderIcon size={16} className="animate-spin" />
+						<span className='relative inline-block rounded-full border border-gray-300 bg-white px-4 py-1 text-xs shadow-sm'>
+							<LoaderIcon size={16} className='animate-spin' />
 						</span>
 					</div>
 				)}
@@ -269,11 +269,11 @@ export const Thread = ({ messageId, onClose }: Props) => {
 				/>
 			</div>
 
-			<div className="px-4">
+			<div className='px-4'>
 				<Editor
 					key={editorKey}
 					onSubmit={handleSubmit}
-					placeholder="Reply..."
+					placeholder='Reply...'
 					disabled={isPending}
 					innerRef={editorRef}
 				/>

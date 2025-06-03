@@ -24,13 +24,13 @@ export const Conversation = ({ id }: Props) => {
 
 	if (loadingMember || isLoadingFirstPage)
 		return (
-			<div className="flex items-center justify-center h-full">
-				<LoaderIcon size={24} className="animate-spin text-muted-foreground" />
+			<div className='flex h-full items-center justify-center'>
+				<LoaderIcon size={24} className='animate-spin text-muted-foreground' />
 			</div>
 		)
 
 	return (
-		<div className="flex flex-col h-full">
+		<div className='flex h-full flex-col'>
 			<Header
 				memberName={member?.user.name}
 				memberImage={member?.user.image}
@@ -40,7 +40,7 @@ export const Conversation = ({ id }: Props) => {
 			<MessageList
 				memberName={member?.user.name}
 				memberImage={member?.user.image}
-				variant="conversation"
+				variant='conversation'
 				data={results}
 				loadMore={loadMore}
 				isLoadingMore={isLoadingMore}

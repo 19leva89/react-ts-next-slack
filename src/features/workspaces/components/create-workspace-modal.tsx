@@ -57,10 +57,10 @@ export const CreateWorkspaceModal = () => {
 				<DialogHeader>
 					<DialogTitle>Add a workspace</DialogTitle>
 
-					<DialogDescription className="hidden" />
+					<DialogDescription className='hidden' />
 				</DialogHeader>
 
-				<form onSubmit={handleSubmit} className="space-y-4">
+				<form onSubmit={handleSubmit} className='space-y-4'>
 					<Input
 						value={name}
 						onChange={(e) => setName(e.target.value)}
@@ -71,8 +71,8 @@ export const CreateWorkspaceModal = () => {
 						placeholder="Workspace name e.g. 'Work', 'Personal', 'Home'"
 					/>
 
-					<div className="flex justify-end">
-						<Button type="submit" disabled={!name.trim()}>
+					<div className='flex justify-end'>
+						<Button type='submit' disabled={!name.trim()}>
 							Create
 						</Button>
 					</div>

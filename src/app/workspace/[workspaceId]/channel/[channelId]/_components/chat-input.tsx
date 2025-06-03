@@ -69,7 +69,7 @@ export const ChatInput = ({ placeholder }: Props) => {
 			await createMessage(values, { throwOnError: true })
 
 			setEditorKey((prevKey) => prevKey + 1)
-		} catch (error) {
+		} catch {
 			toast.error('Failed to create message')
 		} finally {
 			setIsPending(false)
@@ -78,14 +78,14 @@ export const ChatInput = ({ placeholder }: Props) => {
 	}
 
 	return (
-		<div className="w-full px-5">
+		<div className='w-full px-5'>
 			<Editor
 				key={editorKey}
 				onSubmit={handleSubmit}
 				placeholder={placeholder}
 				disabled={isPending}
 				innerRef={editorRef}
-				variant="create"
+				variant='create'
 			/>
 		</div>
 	)

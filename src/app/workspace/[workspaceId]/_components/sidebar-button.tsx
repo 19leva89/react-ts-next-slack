@@ -12,21 +12,21 @@ interface Props {
 
 export const SidebarButton = ({ icon: Icon, label, isActive }: Props) => {
 	return (
-		<div className="flex flex-col items-center justify-center gap-y-0.5 cursor-pointer group">
+		<div className='group flex cursor-pointer flex-col items-center justify-center gap-y-0.5'>
 			<Button
-				variant="transparent"
+				variant='transparent'
 				className={cn(
-					'size-9 group-hover:bg-accent/20! transition-colors ease-in-out duration-300',
+					'size-9 transition-colors duration-300 ease-in-out group-hover:bg-accent/20!',
 					isActive && 'bg-accent/20',
 				)}
 			>
 				<Icon
 					size={20}
-					className="size-5! text-white group-hover:scale-115 transition ease-in-out duration-300"
+					className='size-5! text-white transition duration-300 ease-in-out group-hover:scale-115'
 				/>
 			</Button>
 
-			<span className="text-[11px] text-white group-hover:text-accent transition-colors ease-in-out duration-300">
+			<span className='text-[11px] text-white transition-colors duration-300 ease-in-out group-hover:text-accent'>
 				{label}
 			</span>
 		</div>

@@ -27,15 +27,26 @@ Utilities and Libraries:
 - React Use (custom React Hooks)
 
 
-# To run the client and server via concurrently:
-`npm i` (install dependencies)
-`npm run all`
-`npm run lint` (loading ESLint checker)
-`npm run knip`
+# Project setup commands:
+terminal powershell -> `npm i` (install dependencies)
+terminal powershell -> `npm run all`
+terminal powershell -> `npm run lint` (loading ESLint checker)
+terminal powershell -> `npm run knip`
 
-`npx convex dev`
-`npx @convex-dev/auth` (sets up your project for authenticating via the library)
-`npx convex env set AUTH_GITHUB_ID <yourGithubClientId>`
-`npx convex env set AUTH_GITHUB_SECRET <yourGithubSecret>`
-`npx convex env set AUTH_GOOGLE_ID <yourGoogleClientId>`
-`npx convex env set AUTH_GOOGLE_SECRET <yourGoogleSecret>`
+# Convex commands:
+terminal powershell -> `npx convex dev`
+terminal powershell -> `npx @convex-dev/auth` (sets up your project for authenticating via the library)
+terminal powershell -> `npx convex env set AUTH_GITHUB_ID <yourGithubClientId>`
+terminal powershell -> `npx convex env set AUTH_GITHUB_SECRET <yourGithubSecret>`
+terminal powershell -> `npx convex env set AUTH_GOOGLE_ID <yourGoogleClientId>`
+terminal powershell -> `npx convex env set AUTH_GOOGLE_SECRET <yourGoogleSecret>`
+
+# GitHub commands:
+terminal powershell -> `git pull origin master` (get latest changes)
+
+terminal powershell -> `git add .` (add all changes)
+terminal powershell -> `git commit -m "commit message"` (commit changes)
+terminal powershell -> `git checkout -b <branch-name>` (create new branch)
+
+terminal powershell -> `git push origin master` (push changes to master)
+terminal powershell -> `git push origin <branch-name>` (push changes to branch)

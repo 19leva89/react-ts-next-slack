@@ -34,17 +34,17 @@ export const UserItem = ({ id, label = 'Member', image, variant }: Props) => {
 	const avatarFallback = label.charAt(0).toUpperCase()
 
 	return (
-		<Button variant="transparent" size="sm" className={cn(userItemVariants({ variant }))} asChild>
+		<Button variant='transparent' size='sm' className={cn(userItemVariants({ variant }))} asChild>
 			<Link href={`/workspace/${workspaceId}/member/${id}`}>
-				<Avatar className="size-5 rounded-md mr-1">
-					<AvatarImage src={image} alt={label} className="rounded-md" />
+				<Avatar className='mr-1 size-5 rounded-md'>
+					<AvatarImage src={image} alt={label} className='rounded-md' />
 
-					<AvatarFallback className="rounded-md bg-sky-500 text-white text-xs">
+					<AvatarFallback className='rounded-md bg-sky-500 text-xs text-white'>
 						{avatarFallback}
 					</AvatarFallback>
 				</Avatar>
 
-				<span className="text-sm truncate">{label}</span>
+				<span className='truncate text-sm'>{label}</span>
 			</Link>
 		</Button>
 	)

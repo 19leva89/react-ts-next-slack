@@ -104,6 +104,9 @@ const Editor = ({
 		}
 
 		quill.setContents(defaultValueRef.current)
+
+		const container = containerRef.current
+
 		setText(quill.getText())
 
 		quill.on(Quill.events.TEXT_CHANGE, () => {
@@ -113,8 +116,8 @@ const Editor = ({
 		return () => {
 			quill.off(Quill.events.TEXT_CHANGE)
 
-			if (containerRef.current) {
-				containerRef.current.innerHTML = ''
+			if (container) {
+				container.innerHTML = ''
 			}
 
 			if (quillRef.current) {
@@ -164,33 +167,33 @@ const Editor = ({
 	const isEmpty = !image && text.replace(/<(.|\n)*?>/g, '').trim().length === 0
 
 	return (
-		<div className="flex flex-col">
+		<div className='flex flex-col'>
 			<input
-				type="file"
+				type='file'
 				ref={imageRef}
-				accept="image/*"
+				accept='image/*'
 				onChange={(e) => setImage(e.target.files![0])}
-				className="hidden"
+				className='hidden'
 			/>
 
 			<div
 				className={cn(
-					'flex flex-col border border-slate-200 rounded-md bg-white overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition',
+					'flex flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition focus-within:border-slate-300 focus-within:shadow-sm',
 					disabled && 'pointer-events-none opacity-50',
 				)}
 			>
-				<div ref={containerRef} className="h-full ql-custom" />
+				<div ref={containerRef} className='ql-custom h-full' />
 
 				{!!image && (
-					<div className="p-2">
-						<div className="relative flex items-center justify-center size-[62px] group/image">
-							<Hint label="Remove image" side="top">
+					<div className='p-2'>
+						<div className='group/image relative flex size-[62px] items-center justify-center'>
+							<Hint label='Remove image' side='top'>
 								<button
 									onClick={() => {
 										setImage(null)
 										imageRef.current!.value = ''
 									}}
-									className="z-4 absolute -top-2.5 -right-2.5 hidden size-6 items-center justify-center border-2 border-white rounded-full text-white bg-black/70 hover:bg-black cursor-pointer group-hover/image:flex"
+									className='absolute -top-2.5 -right-2.5 z-4 hidden size-6 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-black/70 text-white group-hover/image:flex hover:bg-black'
 								>
 									<XIcon size={14} />
 								</button>
@@ -198,32 +201,32 @@ const Editor = ({
 
 							<Image
 								src={URL.createObjectURL(image)}
-								alt="Uploaded image"
+								alt='Uploaded image'
 								fill
-								className="border rounded-xl overflow-hidden object-cover"
+								className='overflow-hidden rounded-xl border object-cover'
 							/>
 						</div>
 					</div>
 				)}
 
-				<div className="z-5 flex px-2 pb-2">
-					<Hint label={isToolbarVisible ? 'Hide formatting' : 'Show formatting'} side="top">
-						<Button variant="ghost" size="iconSm" disabled={disabled} onClick={toggleToolbar}>
+				<div className='z-5 flex px-2 pb-2'>
+					<Hint label={isToolbarVisible ? 'Hide formatting' : 'Show formatting'} side='top'>
+						<Button variant='ghost' size='iconSm' disabled={disabled} onClick={toggleToolbar}>
 							<PiTextAa size={16} />
 						</Button>
 					</Hint>
 
 					<EmojiPopover onEmojiSelect={onEmojiSelect}>
-						<Button variant="ghost" size="iconSm" disabled={disabled}>
+						<Button variant='ghost' size='iconSm' disabled={disabled}>
 							<SmileIcon size={16} />
 						</Button>
 					</EmojiPopover>
 
 					{variant === 'create' && (
-						<Hint label="Image" side="top">
+						<Hint label='Image' side='top'>
 							<Button
-								variant="ghost"
-								size="iconSm"
+								variant='ghost'
+								size='iconSm'
 								disabled={disabled}
 								onClick={() => imageRef.current?.click()}
 							>
@@ -233,16 +236,16 @@ const Editor = ({
 					)}
 
 					{variant === 'update' && (
-						<div className="flex items-center gap-x-2 ml-auto">
-							<Button variant="outline" size="sm" disabled={disabled} onClick={onCancel}>
+						<div className='ml-auto flex items-center gap-x-2'>
+							<Button variant='outline' size='sm' disabled={disabled} onClick={onCancel}>
 								Cancel
 							</Button>
 
 							<Button
-								size="sm"
+								size='sm'
 								disabled={disabled || isEmpty}
 								onClick={onSubmitClick}
-								className="text-white bg-[#007a5a] hover:bg-[#007a5a]/80"
+								className='bg-[#007a5a] text-white hover:bg-[#007a5a]/80'
 							>
 								Save
 							</Button>
@@ -251,14 +254,14 @@ const Editor = ({
 
 					{variant === 'create' && (
 						<Button
-							size="iconSm"
+							size='iconSm'
 							disabled={disabled || isEmpty}
 							onClick={onSubmitClick}
 							className={cn(
 								'ml-auto',
 								isEmpty
-									? 'text-muted-foreground bg-white hover:bg-white'
-									: 'text-white bg-[#007a5a] hover:bg-[#007a5a]/80',
+									? 'bg-white text-muted-foreground hover:bg-white'
+									: 'bg-[#007a5a] text-white hover:bg-[#007a5a]/80',
 							)}
 						>
 							<MdSend size={16} />
@@ -270,7 +273,7 @@ const Editor = ({
 			{variant === 'create' && (
 				<div
 					className={cn(
-						'flex justify-end p-2 text-[10px] text-muted-foreground opacity-0 transition-opacity ease-in-out duration-300',
+						'flex justify-end p-2 text-[10px] text-muted-foreground opacity-0 transition-opacity duration-300 ease-in-out',
 						!isEmpty && 'opacity-100',
 					)}
 				>

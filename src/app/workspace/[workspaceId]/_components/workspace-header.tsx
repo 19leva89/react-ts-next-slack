@@ -33,29 +33,29 @@ export const WorkspaceHeader = ({ workspace, isOwner }: Props) => {
 
 			<PreferencesModal open={preferencesOpen} setOpen={setPreferencesOpen} initialValue={workspace.name} />
 
-			<div className="flex items-center justify-between gap-0.5 h-[49px] px-4">
+			<div className='flex h-[49px] items-center justify-between gap-0.5 px-4'>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button
-							variant="transparent"
-							size="sm"
-							className="w-auto p-1.5 text-lg font-semibold overflow-hidden transition-colors ease-in-out duration-300"
+							variant='transparent'
+							size='sm'
+							className='w-auto overflow-hidden p-1.5 text-lg font-semibold transition-colors duration-300 ease-in-out'
 						>
-							<span className="truncate">{workspace.name}</span>
+							<span className='truncate'>{workspace.name}</span>
 
-							<ChevronDownIcon size={16} className="ml-1 shrink-0" />
+							<ChevronDownIcon size={16} className='ml-1 shrink-0' />
 						</Button>
 					</DropdownMenuTrigger>
 
-					<DropdownMenuContent side="bottom" align="start" className="w-64">
-						<DropdownMenuItem className="cursor-pointer capitalize">
-							<div className="relative flex items-center justify-center size-9 mr-2 overflow-hidden bg-[#616061] text-white font-semibold text-xl rounded-md">
+					<DropdownMenuContent side='bottom' align='start' className='w-64'>
+						<DropdownMenuItem className='cursor-pointer capitalize'>
+							<div className='relative mr-2 flex size-9 items-center justify-center overflow-hidden rounded-md bg-[#616061] text-xl font-semibold text-white'>
 								{workspace.name.charAt(0).toUpperCase()}
 							</div>
 
-							<div className="flex flex-col items-start">
-								<p className="font-bold">{workspace.name}</p>
-								<p className="text-xs text-muted-foreground">Active workspace</p>
+							<div className='flex flex-col items-start'>
+								<p className='font-bold'>{workspace.name}</p>
+								<p className='text-xs text-muted-foreground'>Active workspace</p>
 							</div>
 						</DropdownMenuItem>
 
@@ -63,13 +63,13 @@ export const WorkspaceHeader = ({ workspace, isOwner }: Props) => {
 							<>
 								<DropdownMenuSeparator />
 
-								<DropdownMenuItem onClick={() => setInviteOpen(true)} className="py-2 cursor-pointer">
+								<DropdownMenuItem onClick={() => setInviteOpen(true)} className='cursor-pointer py-2'>
 									Invite members to {workspace.name}
 								</DropdownMenuItem>
 
 								<DropdownMenuSeparator />
 
-								<DropdownMenuItem onClick={() => setPreferencesOpen(true)} className="py-2 cursor-pointer">
+								<DropdownMenuItem onClick={() => setPreferencesOpen(true)} className='cursor-pointer py-2'>
 									Preferences
 								</DropdownMenuItem>
 							</>
@@ -77,22 +77,22 @@ export const WorkspaceHeader = ({ workspace, isOwner }: Props) => {
 					</DropdownMenuContent>
 				</DropdownMenu>
 
-				<div className="flex items-center gap-0.5">
-					<Hint label="Filter conversations">
+				<div className='flex items-center gap-0.5'>
+					<Hint label='Filter conversations'>
 						<Button
-							variant="transparent"
-							size="iconSm"
-							className="transition-colors ease-in-out duration-300"
+							variant='transparent'
+							size='iconSm'
+							className='transition-colors duration-300 ease-in-out'
 						>
 							<ListFilterIcon size={16} />
 						</Button>
 					</Hint>
 
-					<Hint label="New message">
+					<Hint label='New message'>
 						<Button
-							variant="transparent"
-							size="iconSm"
-							className="transition-colors ease-in-out duration-300"
+							variant='transparent'
+							size='iconSm'
+							className='transition-colors duration-300 ease-in-out'
 						>
 							<SquarePenIcon size={16} />
 						</Button>
