@@ -17,12 +17,12 @@ const inter = Inter({ subsets: ['latin'] })
 export default async function RootLayout({ children }: PropsWithChildren) {
 	return (
 		<ConvexAuthNextjsServerProvider>
-			<html lang="en">
-				<body className={cn('min-h-screen font-sans antialiased grainy', inter.className)}>
+			<html lang='en'>
+				<body className={cn('grainy min-h-screen font-sans antialiased', inter.className)}>
 					<ConvexClientProvider>
 						<JotaiProvider>
 							<NuqsAdapter>
-								<Toaster position="bottom-right" expand={false} richColors />
+								<Toaster position='bottom-right' expand={false} richColors />
 
 								<Modals />
 

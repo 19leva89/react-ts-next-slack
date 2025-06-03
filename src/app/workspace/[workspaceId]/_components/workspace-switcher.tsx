@@ -20,7 +20,7 @@ export const WorkspaceSwitcher = () => {
 
 	const [_open, setOpen] = useCreateWorkspaceModal()
 
-	const { data: workspaces, isLoading: loadingWorkspaces } = useGetWorkspaces()
+	const { data: workspaces } = useGetWorkspaces()
 	const { data: workspace, isLoading: loadingWorkspace } = useGetWorkspace({ id: workspaceId })
 
 	const filteredWorkspaces = workspaces?.filter((workspace) => workspace._id !== workspaceId)
@@ -30,40 +30,40 @@ export const WorkspaceSwitcher = () => {
 			<DropdownMenuTrigger asChild>
 				<Button
 					loading={loadingWorkspace}
-					className="relative size-9 overflow-hidden bg-[#ababad] hover:bg-[#ababad]/80 text-slate-800 font-semibold text-xl transition-colors ease-in-out duration-300"
+					className='relative size-9 overflow-hidden bg-[#ababad] text-xl font-semibold text-slate-800 transition-colors duration-300 ease-in-out hover:bg-[#ababad]/80'
 				>
 					{workspace?.name.charAt(0).toUpperCase()}
 				</Button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent side="bottom" align="start" className="w-64">
+			<DropdownMenuContent side='bottom' align='start' className='w-64'>
 				<DropdownMenuItem
 					onClick={() => router.push(`/workspace/${workspaceId}`)}
-					className="flex-col items-start justify-start gap-0 capitalize cursor-pointer"
+					className='cursor-pointer flex-col items-start justify-start gap-0 capitalize'
 				>
-					<p className="truncate w-full">{workspace?.name}</p>
+					<p className='w-full truncate'>{workspace?.name}</p>
 
-					<span className="text-xs text-muted-foreground normal-case">Active workspace</span>
+					<span className='text-xs text-muted-foreground normal-case'>Active workspace</span>
 				</DropdownMenuItem>
 
 				{filteredWorkspaces?.map((workspace) => (
 					<DropdownMenuItem
 						key={workspace._id}
 						onClick={() => router.push(`/workspace/${workspace._id}`)}
-						className="capitalize cursor-pointer"
+						className='cursor-pointer capitalize'
 					>
-						<div className="relative flex items-center justify-center shrink-0 size-9 mr-2 overflow-hidden bg-[#616061] text-white font-semibold text-xl rounded-md">
+						<div className='relative mr-2 flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-md bg-[#616061] text-xl font-semibold text-white'>
 							{workspace.name.charAt(0).toUpperCase()}
 						</div>
 
-						<p className="truncate">{workspace.name}</p>
+						<p className='truncate'>{workspace.name}</p>
 					</DropdownMenuItem>
 				))}
 
 				<DropdownMenuSeparator />
 
-				<DropdownMenuItem onClick={() => setOpen(true)} className="cursor-pointer">
-					<div className="relative flex items-center justify-center size-9 mr-2 overflow-hidden bg-[#f2f2f2] text-slate-800 font-semibold text-xl rounded-md">
+				<DropdownMenuItem onClick={() => setOpen(true)} className='cursor-pointer'>
+					<div className='relative mr-2 flex size-9 items-center justify-center overflow-hidden rounded-md bg-[#f2f2f2] text-xl font-semibold text-slate-800'>
 						<PlusIcon />
 					</div>
 					Create a new workspace

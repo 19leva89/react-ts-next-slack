@@ -14,7 +14,7 @@ import {
 export const useConfirm = (title: string, message: string): [() => JSX.Element, () => Promise<unknown>] => {
 	const [promise, setPromise] = useState<{ resolve: (value: boolean) => void } | null>(null)
 
-	const confirm = () => new Promise((resolve, reject) => setPromise({ resolve }))
+	const confirm = () => new Promise((resolve) => setPromise({ resolve }))
 
 	const handleClose = () => {
 		setPromise(null)
@@ -39,7 +39,7 @@ export const useConfirm = (title: string, message: string): [() => JSX.Element, 
 					<AlertDialogDescription>{message}</AlertDialogDescription>
 				</AlertDialogHeader>
 
-				<AlertDialogFooter className="pt-2">
+				<AlertDialogFooter className='pt-2'>
 					<AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
 
 					<AlertDialogAction onClick={handleConfirm}>Confirm</AlertDialogAction>

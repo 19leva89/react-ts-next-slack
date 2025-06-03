@@ -16,14 +16,14 @@ const WorkspaceIdLayout = ({ children }: PropsWithChildren) => {
 	const showPanel = !!parentMessageId || !!profileMemberId
 
 	return (
-		<div className="h-full">
+		<div className='h-full'>
 			<Toolbar />
 
-			<div className="flex h-[calc(100vh-40px)]">
+			<div className='flex h-[calc(100vh-40px)]'>
 				<Sidebar />
 
-				<ResizablePanelGroup direction="horizontal" autoSaveId={'ds-workspace-layout'}>
-					<ResizablePanel minSize={11} defaultSize={20} className="bg-[#5e2c5f]">
+				<ResizablePanelGroup direction='horizontal' autoSaveId={'ds-workspace-layout'}>
+					<ResizablePanel minSize={11} defaultSize={20} className='bg-[#5e2c5f]'>
 						<WorkspaceSidebar />
 					</ResizablePanel>
 
@@ -43,8 +43,8 @@ const WorkspaceIdLayout = ({ children }: PropsWithChildren) => {
 								) : profileMemberId ? (
 									<Profile memberId={profileMemberId as Id<'members'>} onClose={onClose} />
 								) : (
-									<div className="flex items-center justify-center h-full">
-										<LoaderIcon size={20} className="text-muted-foreground animate-spin" />
+									<div className='flex h-full items-center justify-center'>
+										<LoaderIcon size={20} className='animate-spin text-muted-foreground' />
 									</div>
 								)}
 							</ResizablePanel>

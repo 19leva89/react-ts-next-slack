@@ -60,8 +60,8 @@ export const InviteModal = ({ open, setOpen, name, joinCode }: Props) => {
 	return (
 		<>
 			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogContent className="gap-0 p-0 bg-gray-50 overflow-hidden">
-					<DialogHeader className="p-4 bg-white">
+				<DialogContent className='gap-0 overflow-hidden bg-gray-50 p-0'>
+					<DialogHeader className='bg-white p-4'>
 						<DialogTitle>Invite people to {name}</DialogTitle>
 
 						<DialogDescription>Use the code below to invite people to your workspace</DialogDescription>
@@ -69,19 +69,19 @@ export const InviteModal = ({ open, setOpen, name, joinCode }: Props) => {
 
 					<Separator />
 
-					<div className="flex flex-col items-center justify-center gap-2 px-10 py-16">
-						<p className="text-4xl font-bold tracking-widest uppercase">{joinCode}</p>
+					<div className='flex flex-col items-center justify-center gap-2 px-10 py-16'>
+						<p className='text-4xl font-bold tracking-widest uppercase'>{joinCode}</p>
 
-						<Button variant="ghost" size="sm" onClick={handleCopy}>
+						<Button variant='ghost' size='sm' onClick={handleCopy}>
 							Copy link
-							<CopyIcon size={16} className="ml-2" />
+							<CopyIcon size={16} className='ml-2' />
 						</Button>
 					</div>
 
-					<div className="flex items-center justify-between w-full p-4">
-						<Button variant="outline" disabled={isPending} onClick={handleNewCode}>
+					<div className='flex w-full items-center justify-between p-4'>
+						<Button variant='outline' disabled={isPending} onClick={handleNewCode}>
 							New code
-							<RefreshCcwIcon size={16} className="ml-2" />
+							<RefreshCcwIcon size={16} className='ml-2' />
 						</Button>
 
 						<DialogClose asChild>

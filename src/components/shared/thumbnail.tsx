@@ -10,17 +10,17 @@ export const Thumbnail = ({ url }: Props) => {
 	return (
 		<Dialog>
 			<DialogTrigger aria-describedby={undefined}>
-				<div className="relative max-w-90 my-2 border rounded-lg overflow-hidden cursor-zoom-in">
-					<img src={url} alt="Message image" className="size-full rounded-md object-cover" />
+				<div className='relative my-2 max-w-90 cursor-zoom-in overflow-hidden rounded-lg border'>
+					<img src={url} alt='Message image' className='size-full rounded-md object-cover' />
 				</div>
 			</DialogTrigger>
 
-			<DialogContent className="max-w-200 p-1 border-none bg-transparent shadow-none">
-				<DialogTitle className="hidden" />
+			<DialogContent className='max-w-200 border-none bg-transparent p-1 shadow-none'>
+				<DialogTitle className='hidden' />
 
-				<DialogDescription className="hidden" />
+				<DialogDescription className='hidden' />
 
-				<img src={url} alt="Message image" className="size-full rounded-md object-cover" />
+				<img src={url} alt='Message image' className='size-full rounded-md object-cover' />
 			</DialogContent>
 		</Dialog>
 	)

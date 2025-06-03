@@ -45,25 +45,25 @@ const JoinPage = () => {
 
 	if (isLoading) {
 		return (
-			<div className="flex items-center justify-center h-full">
-				<LoaderIcon size={24} className="animate-spin text-muted-foreground" />
+			<div className='flex h-full items-center justify-center'>
+				<LoaderIcon size={24} className='animate-spin text-muted-foreground' />
 			</div>
 		)
 	}
 
 	return (
-		<div className="flex flex-col items-center justify-center gap-y-8 h-full p-8 rounded-lg bg-white shadow-md">
-			<Image src="/svg/logo.svg" width={60} height={60} alt="Logo" />
+		<div className='flex h-full flex-col items-center justify-center gap-y-8 rounded-lg bg-white p-8 shadow-md'>
+			<Image src='/svg/logo.svg' width={60} height={60} alt='Logo' />
 
-			<div className="flex flex-col items-center justify-center gap-y-4 max-w-md">
-				<div className="flex flex-col items-center justify-center gap-y-2">
-					<h1 className="text-2xl font-bold">Join {data?.name}</h1>
+			<div className='flex max-w-md flex-col items-center justify-center gap-y-4'>
+				<div className='flex flex-col items-center justify-center gap-y-2'>
+					<h1 className='text-2xl font-bold'>Join {data?.name}</h1>
 
-					<p className="text-md text-muted-foreground">Enter the workspace code to join</p>
+					<p className='text-md text-muted-foreground'>Enter the workspace code to join</p>
 				</div>
 
 				<InputOTP maxLength={6} autoFocus onComplete={handleComplete} disabled={isPending}>
-					<InputOTPGroup className="uppercase">
+					<InputOTPGroup className='uppercase'>
 						<InputOTPSlot index={0} />
 						<InputOTPSlot index={1} />
 						<InputOTPSlot index={2} />
@@ -71,7 +71,7 @@ const JoinPage = () => {
 
 					<InputOTPSeparator />
 
-					<InputOTPGroup className="uppercase">
+					<InputOTPGroup className='uppercase'>
 						<InputOTPSlot index={3} />
 						<InputOTPSlot index={4} />
 						<InputOTPSlot index={5} />
@@ -79,9 +79,9 @@ const JoinPage = () => {
 				</InputOTP>
 			</div>
 
-			<div className="flex gap-x-4">
-				<Button variant="outline" size="lg" asChild>
-					<Link href="/">
+			<div className='flex gap-x-4'>
+				<Button variant='outline' size='lg' asChild>
+					<Link href='/'>
 						<ArrowLeftIcon />
 						Back to home
 					</Link>

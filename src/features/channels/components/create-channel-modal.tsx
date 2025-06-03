@@ -65,10 +65,10 @@ export const CreateChannelModal = () => {
 				<DialogHeader>
 					<DialogTitle>Add a channel</DialogTitle>
 
-					<DialogDescription className="hidden" />
+					<DialogDescription className='hidden' />
 				</DialogHeader>
 
-				<form onSubmit={handleSubmit} className="space-y-4">
+				<form onSubmit={handleSubmit} className='space-y-4'>
 					<Input
 						value={name}
 						onChange={handleChange}
@@ -80,8 +80,8 @@ export const CreateChannelModal = () => {
 						placeholder="Channel name e.g. 'plan-budget'"
 					/>
 
-					<div className="flex justify-end">
-						<Button type="submit" disabled={!name.trim()}>
+					<div className='flex justify-end'>
+						<Button type='submit' disabled={!name.trim()}>
 							Create
 						</Button>
 					</div>

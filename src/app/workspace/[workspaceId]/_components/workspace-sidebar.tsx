@@ -26,42 +26,42 @@ export const WorkspaceSidebar = () => {
 
 	const [_open, setOpen] = useCreateChannelModal()
 
+	const { data: members } = useGetMembers({ workspaceId })
+	const { data: channels } = useGetChannels({ workspaceId })
 	const { data: member, isLoading: loadingMember } = useCurrentMember({ workspaceId })
-	const { data: members, isLoading: loadingMembers } = useGetMembers({ workspaceId })
-	const { data: channels, isLoading: loadingChannels } = useGetChannels({ workspaceId })
 	const { data: workspace, isLoading: loadingWorkspace } = useGetWorkspace({ id: workspaceId })
 
 	if (loadingMember || loadingWorkspace) {
 		return (
-			<div className="flex flex-col items-center justify-center h-full bg-[#5e2c5f]">
-				<LoaderIcon size={20} className="text-white animate-spin" />
+			<div className='flex h-full flex-col items-center justify-center bg-[#5e2c5f]'>
+				<LoaderIcon size={20} className='animate-spin text-white' />
 			</div>
 		)
 	}
 
 	if (!member || !workspace) {
 		return (
-			<div className="flex flex-col items-center justify-center gap-y-2 h-full bg-[#5e2c5f]">
-				<AlertTriangleIcon size={20} className="text-white" />
+			<div className='flex h-full flex-col items-center justify-center gap-y-2 bg-[#5e2c5f]'>
+				<AlertTriangleIcon size={20} className='text-white' />
 
-				<p className="text-sm text-white">Workspace not found</p>
+				<p className='text-sm text-white'>Workspace not found</p>
 			</div>
 		)
 	}
 
 	return (
-		<div className="flex flex-col h-full bg-[#5e2c5f]">
+		<div className='flex h-full flex-col bg-[#5e2c5f]'>
 			<WorkspaceHeader workspace={workspace} isOwner={member.role === 'owner'} />
 
-			<div className="flex flex-col gap-0.5 px-2.5 mt-3">
-				<SidebarItem id="threads" label="Threads" icon={MessageSquareTextIcon} />
+			<div className='mt-3 flex flex-col gap-0.5 px-2.5'>
+				<SidebarItem id='threads' label='Threads' icon={MessageSquareTextIcon} />
 
-				<SidebarItem id="drafts" label="Drafts & Sent" icon={SendHorizontalIcon} />
+				<SidebarItem id='drafts' label='Drafts & Sent' icon={SendHorizontalIcon} />
 			</div>
 
 			<WorkspaceSection
-				label="Channels"
-				hint="New channels"
+				label='Channels'
+				hint='New channels'
 				onNew={member.role === 'owner' ? () => setOpen(true) : undefined}
 			>
 				{channels?.map((item) => (
@@ -75,7 +75,7 @@ export const WorkspaceSidebar = () => {
 				))}
 			</WorkspaceSection>
 
-			<WorkspaceSection label="Direct messages" hint="New direct messages" onNew={() => {}}>
+			<WorkspaceSection label='Direct messages' hint='New direct messages' onNew={() => {}}>
 				{members?.map((item) => (
 					<UserItem
 						key={item._id}

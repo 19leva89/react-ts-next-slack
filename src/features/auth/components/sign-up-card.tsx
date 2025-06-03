@@ -54,26 +54,26 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 	}
 
 	return (
-		<Card className="size-full p-8">
-			<CardHeader className="px-0 pt-0">
+		<Card className='size-full p-8'>
+			<CardHeader className='px-0 pt-0'>
 				<CardTitle>Sign up to continue</CardTitle>
 
 				<CardDescription>Use your email or another service to continue</CardDescription>
 			</CardHeader>
 
 			{!!error && (
-				<div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
+				<div className='mb-6 flex items-center gap-x-2 rounded-md bg-destructive/15 p-3 text-sm text-destructive'>
 					<TriangleAlertIcon size={16} />
 
 					<p>{error}</p>
 				</div>
 			)}
 
-			<CardContent className="space-y-5 px-0 pb-0">
-				<form onSubmit={onPasswordSignUp} className="space-y-2.5">
+			<CardContent className='space-y-5 px-0 pb-0'>
+				<form onSubmit={onPasswordSignUp} className='space-y-2.5'>
 					<Input
-						type="text"
-						placeholder="Full name"
+						type='text'
+						placeholder='Full name'
 						disabled={pending}
 						value={name}
 						onChange={(e) => setName(e.target.value)}
@@ -81,8 +81,8 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 					/>
 
 					<Input
-						type="email"
-						placeholder="Email"
+						type='email'
+						placeholder='Email'
 						disabled={pending}
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -90,8 +90,8 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 					/>
 
 					<Input
-						type="password"
-						placeholder="Password"
+						type='password'
+						placeholder='Password'
 						disabled={pending}
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -99,50 +99,50 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 					/>
 
 					<Input
-						type="password"
-						placeholder="Confirm password"
+						type='password'
+						placeholder='Confirm password'
 						disabled={pending}
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
 
-					<Button type="submit" size="lg" disabled={pending} className="w-full">
+					<Button type='submit' size='lg' disabled={pending} className='w-full'>
 						Continue
 					</Button>
 				</form>
 
 				<Separator />
 
-				<div className="flex flex-col gap-y-2.5">
+				<div className='flex flex-col gap-y-2.5'>
 					<Button
-						type="button"
-						size="lg"
-						variant="outline"
+						type='button'
+						size='lg'
+						variant='outline'
 						disabled={pending}
 						onClick={() => onProviderSignUp('google')}
-						className="w-full relative"
+						className='relative w-full'
 					>
-						<FcGoogle className="size-5! absolute left-2.5 top-1/2 transform -translate-y-1/2" />
+						<FcGoogle className='absolute top-1/2 left-2.5 size-5! -translate-y-1/2 transform' />
 						Continue with Google
 					</Button>
 
 					<Button
-						type="button"
-						size="lg"
-						variant="outline"
+						type='button'
+						size='lg'
+						variant='outline'
 						disabled={pending}
 						onClick={() => onProviderSignUp('github')}
-						className="w-full relative"
+						className='relative w-full'
 					>
-						<FaGithub className="size-5! absolute left-2.5 top-1/2 transform -translate-y-1/2" />
+						<FaGithub className='absolute top-1/2 left-2.5 size-5! -translate-y-1/2 transform' />
 						Continue with GitHub
 					</Button>
 				</div>
 
-				<p className="text-xs text-muted-foreground">
+				<p className='text-xs text-muted-foreground'>
 					Already have an account?{' '}
-					<span onClick={() => setState('signIn')} className="text-sky-700 hover:underline cursor-pointer">
+					<span onClick={() => setState('signIn')} className='cursor-pointer text-sky-700 hover:underline'>
 						Sign in
 					</span>
 				</p>

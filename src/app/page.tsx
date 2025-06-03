@@ -26,8 +26,8 @@ const HomePage = () => {
 	}, [workspaceId, isLoading, open, setOpen, router])
 
 	return (
-		<div className="flex items-center justify-center h-full">
-			<LoaderIcon size={24} className="animate-spin text-muted-foreground" />
+		<div className='flex h-full items-center justify-center'>
+			<LoaderIcon size={24} className='animate-spin text-muted-foreground' />
 		</div>
 	)
 }
