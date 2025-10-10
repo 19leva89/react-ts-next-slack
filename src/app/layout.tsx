@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import { PropsWithChildren } from 'react'
+import { Analytics } from '@vercel/analytics/next'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { ConvexAuthNextjsServerProvider } from '@convex-dev/auth/nextjs/server'
 
@@ -30,6 +31,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 							</NuqsAdapter>
 						</JotaiProvider>
 					</ConvexClientProvider>
+
+					{/* Allow track page views for Vercel */}
+					<Analytics />
 				</body>
 			</html>
 		</ConvexAuthNextjsServerProvider>
